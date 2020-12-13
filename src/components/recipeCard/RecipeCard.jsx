@@ -16,9 +16,9 @@ class RecipeCard extends Component {
           </div>
           <h2 id="recipe-name">recipe name</h2>
           <div className="recipe-main-div">
-            <p1 id="prep-time"></p1>
+            <p id="prep-time"></p>
             <br />
-            <p1 id="craft-time"></p1>
+            <p id="craft-time"></p>
             <h4>Ingredients</h4>
             <ul id="ingredients"></ul>
             <h4>Direction</h4>

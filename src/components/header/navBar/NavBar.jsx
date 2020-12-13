@@ -1,25 +1,23 @@
 import React, { Component } from "react";
-import { NavHashLink } from "react-router-hash-link";
+import { Navbar, Nav } from "react-bootstrap";
 import "./NavBar.css";
 
 class NavBar extends Component {
   render() {
     return (
-      <div className="nav">
-        <div className="nav-bar">
-          <ul>
-            <li className="nav-cat">
-              <NavHashLink to="/#how">How</NavHashLink>
-            </li>
-            <li className="nav-cat">
-              <NavHashLink to="/#why">Why</NavHashLink>
-            </li>
-            <li className="nav-cat">
-              <NavHashLink to="/#about">About</NavHashLink>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <Navbar className="nav-bar p-0">
+        <Nav className="nav justify-content-center m-0 p-0" as="ul">
+          <Nav.Item as="li" className="nav-cat">
+            <Nav.Link href="#how">how</Nav.Link>
+          </Nav.Item>
+          <Nav.Item as="li" className="nav-cat">
+            <Nav.Link href="#why">why</Nav.Link>
+          </Nav.Item>
+          <Nav.Item as="li" className="nav-cat">
+            <Nav.Link href="#about">about</Nav.Link>
+          </Nav.Item>
+        </Nav>
+      </Navbar>
     );
   }
 }
