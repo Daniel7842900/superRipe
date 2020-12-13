@@ -1,0 +1,42 @@
+/* Recipe section style */
+.recipe-div {
+  text-align: center;
+  width: 100vw;
+  padding-bottom: 5rem;
+}
+
+.recipe-display-div {
+  text-align: center;
+  border: 1px solid;
+  margin: 0 auto;
+  width: 60vw;
+}
+
+.recipe-main-div h4 {
+  text-align: center;
+  font-size: 2em;
+}
+
+.recipe-cat {
+  padding-top: 2rem;
+}
+
+#recipe-name {
+  font-size: 3em;
+}
+
+#prep-time {
+  text-align: center;
+}
+
+#ingredients {
+  display: block;
+  padding-top: 0;
+}
+
+#directions {
+  display: block;
+  padding-top: 0;
+  padding-bottom: 2rem;
+}
+/* End - Recipe section style */
