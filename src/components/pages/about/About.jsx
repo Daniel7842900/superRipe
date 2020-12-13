@@ -4,7 +4,7 @@ import "./About.css";
 class About extends Component {
   render() {
     return (
-      <div className="about-div content-container">
+      <div className="about-div content-container" id="about">
         <div className="about-top-div">
           <h1>About us</h1>
         </div>

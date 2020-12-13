@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavHashLink } from "react-router-hash-link";
 import "./NavBar.css";
 
 class NavBar extends Component {
@@ -9,13 +9,13 @@ class NavBar extends Component {
         <div className="nav-bar">
           <ul>
             <li className="nav-cat">
-              <NavLink to="/how">How</NavLink>
+              <NavHashLink to="/#how">How</NavHashLink>
             </li>
             <li className="nav-cat">
-              <NavLink to="/why">Why</NavLink>
+              <NavHashLink to="/#why">Why</NavHashLink>
             </li>
             <li className="nav-cat">
-              <NavLink to="/about">About</NavLink>
+              <NavHashLink to="/#about">About</NavHashLink>
             </li>
           </ul>
         </div>

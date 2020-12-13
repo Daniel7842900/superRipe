@@ -4,7 +4,7 @@ import "./Why.css";
 class Why extends Component {
   render() {
     return (
-      <div className="why-div content-container">
+      <div className="why-div content-container" id="why">
         <div className="why-top-div">
           <h1>Why did we make this?</h1>
         </div>

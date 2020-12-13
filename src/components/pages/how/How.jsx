@@ -4,7 +4,7 @@ import "./How.css";
 class How extends Component {
   render() {
     return (
-      <div className="how-div content-container">
+      <div className="how-div content-container" id="how">
         <div className="how-top-div">
           <h1>How do you use this?</h1>
         </div>
