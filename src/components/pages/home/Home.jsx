@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import Header from "../../header/Header";
 import SearchBar from "../../searchBar/SearchBar";
 import Banner from "../../common/Banner/Banner";
-import How from "../../how/How";
-import Why from "../../why/Why";
-import About from "../../about/About";
+import How from "../how/How";
+import Why from "../why/Why";
+import About from "../about/About";
 import Footer from "../../footer/Footer";
 
 class Home extends Component {
