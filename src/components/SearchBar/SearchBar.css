@@ -1,0 +1,27 @@
+/* Main function (search bar) style */
+.main-function-div {
+  text-align: center;
+}
+
+.main-top-div h1 {
+  font-size: 8em;
+  margin: 0;
+  padding: 2rem 0 2rem 0;
+}
+
+.search-div {
+  display: inline-flex;
+  padding-bottom: 2rem;
+}
+
+.search-div input {
+  width: 50vw;
+  height: 10vh;
+  font-size: 3em;
+}
+
+#search-btn-img {
+  width: 5vw;
+  height: 5vh;
+}
+/* End - Main function (search bar) style */

@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Header from "./components/Header/Header";
+import SearchBar from "./components/SearchBar/SearchBar";
+import Banner from "./components/common/Banner/Banner";
+import How from "./components/How/How";
+import Why from "./components/Why/Why";
+import About from "./components/About/About";
+import Footer from "./components/Footer/Footer";
 
 function App() {
+  const first_banner = "/resources/mainbanner-1440p.jpg";
+  const second_banner = "/resources/food1.jpg";
+  const thrid_banner = "/resources/smoothie-1440p.jpg";
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="page-wrapper">
+      <Header></Header>
+      <Banner img={first_banner}></Banner>
+      <SearchBar></SearchBar>
+      <How></How>
+      <Banner img={second_banner}></Banner>
+      <Why></Why>
+      <Banner img={thrid_banner}></Banner>
+      <About></About>
+      <Footer></Footer>
     </div>
   );
 }

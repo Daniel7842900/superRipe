@@ -1,0 +1,19 @@
+footer {
+  height: 30vh;
+  background-color: red;
+}
+
+.contact-us-div {
+  font-size: 4em;
+  text-align: center;
+}
+
+.contact-us-div p {
+  margin: 1rem 0 1rem 0;
+}
+
+.contact-us-div p a:first-child {
+  margin: 1rem 0 1rem 0;
+  color: blue;
+  text-decoration: none;
+}
