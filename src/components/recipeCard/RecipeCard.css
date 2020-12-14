@@ -21,6 +21,11 @@
   padding-top: 2rem;
 }
 
+.btn-recipe-cat {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
 #recipe-name {
   font-size: 3em;
 }
