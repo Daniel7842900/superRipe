@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Header from "../../header/Header";
 import SearchBar from "../../searchBar/SearchBar";
-import Banner from "../../common/Banner/Banner";
+import Banner from "../../common/banner/Banner";
 import How from "../how/How";
 import Why from "../why/Why";
 import About from "../about/About";

@@ -1,13 +1,23 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 import { getRecipes } from "../../services/fakeRecipes";
+import { paginate } from "../../utils/paginate";
 import "./RecipeCard.css";
+import Paginate from "../common/pagination/Paginate";
 
 class RecipeCard extends Component {
   state = {
     recipes: getRecipes(),
+    currentPage: 1,
+    pageSize: 1,
   };
   render() {
+    const { currentPage, pageSize, recipes: allRecipes } = this.state;
+
+    // paginate method returns items on current page.
+    const recipes = paginate(allRecipes, currentPage, pageSize);
+    console.log(this.state.recipes);
+
     return (
       <div className="recipe-div content-container">
         <div className="recipe-display-div">
@@ -25,7 +35,7 @@ class RecipeCard extends Component {
           </div>
           <h2 id="recipe-name">recipe name</h2>
           <div className="recipe-main-div">
-            {this.state.recipes.map((recipe) => {
+            {recipes.map((recipe) => {
               return (
                 <div>
                   <p id="prep-time">Prep time: {recipe.prep_time}</p>
@@ -44,6 +54,11 @@ class RecipeCard extends Component {
                 </div>
               );
             })}
+            <Paginate
+              recipes={this.state.recipes}
+              itemsCount={this.state.recipes.length}
+              pageSize={pageSize}
+            ></Paginate>
           </div>
         </div>
       </div>

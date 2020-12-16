@@ -12,6 +12,18 @@ const recipes = [
     category: "food",
   },
   {
+    title: "banana smoothie",
+    prep_time: 5,
+    craft_time: 2,
+    ingredients: ["banana", "strawberry", "milk", "ice"],
+    directions: [
+      "Put ingredients into a blender",
+      "Blend",
+      "Pour into a cup and serve",
+    ],
+    category: "food",
+  },
+  {
     title: "banana fertilizer",
     prep_time: 2,
     craft_time: 0,

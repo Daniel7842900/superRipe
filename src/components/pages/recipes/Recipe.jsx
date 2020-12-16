@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Header from "../../header/Header";
-import Banner from "../../common/Banner/Banner";
+import Banner from "../../common/banner/Banner";
 import SearchBar from "../../searchBar/SearchBar";
 import RecipeCard from "../../recipeCard/RecipeCard";
 import Footer from "../../footer/Footer";
