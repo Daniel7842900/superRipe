@@ -11,12 +11,17 @@ class RecipeCard extends Component {
     currentPage: 1,
     pageSize: 1,
   };
+
+  handlePageChange = (page) => {
+    this.setState({ currentPage: page });
+  };
+
   render() {
     const { currentPage, pageSize, recipes: allRecipes } = this.state;
 
     // paginate method returns items on current page.
     const recipes = paginate(allRecipes, currentPage, pageSize);
-    console.log(this.state.recipes);
+    console.log(recipes);
 
     return (
       <div className="recipe-div content-container">
@@ -33,11 +38,12 @@ class RecipeCard extends Component {
               </Button>
             </a>
           </div>
-          <h2 id="recipe-name">recipe name</h2>
           <div className="recipe-main-div">
             {recipes.map((recipe) => {
               return (
                 <div>
+                  <h2 id="recipe-name">recipe name</h2>
+                  <h4>{recipe.title}</h4>
                   <p id="prep-time">Prep time: {recipe.prep_time}</p>
                   <br />
                   <p id="craft-time">Craft time: {recipe.craft_time}</p>
@@ -58,6 +64,7 @@ class RecipeCard extends Component {
               recipes={this.state.recipes}
               itemsCount={this.state.recipes.length}
               pageSize={pageSize}
+              onPageChange={this.handlePageChange}
             ></Paginate>
           </div>
         </div>
