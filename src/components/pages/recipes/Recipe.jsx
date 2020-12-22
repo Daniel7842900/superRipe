@@ -7,6 +7,7 @@ import Footer from "../../footer/Footer";
 
 class Recipe extends Component {
   render() {
+    const { match } = this.props;
     const first_banner = "/resources/mainbanner-1440p.jpg";
 
     return (
@@ -14,7 +15,7 @@ class Recipe extends Component {
         <Header></Header>
         <Banner img={first_banner}></Banner>
         <SearchBar></SearchBar>
-        <RecipeCard></RecipeCard>
+        <RecipeCard match={match}></RecipeCard>
         <Footer></Footer>
       </div>
     );

@@ -9,7 +9,7 @@ const recipes = [
       "Scoop ice cream",
       "Put whipping cream on top of banana and ice cream",
     ],
-    category: "food",
+    category: { id: "1", name: "food" },
   },
   {
     title: "banana smoothie",
@@ -21,7 +21,7 @@ const recipes = [
       "Blend",
       "Pour into a cup and serve",
     ],
-    category: "food",
+    category: { id: "1", name: "food" },
   },
   {
     title: "banana fertilizer",
@@ -29,7 +29,7 @@ const recipes = [
     craft_time: 0,
     ingredients: ["banana"],
     directions: ["Throw banana peel at your garden"],
-    category: "life hack",
+    category: { id: "2", name: "life hack" },
   },
   {
     title: "coffee air freshener",
@@ -40,7 +40,7 @@ const recipes = [
       "Put coffee ground in paper filter",
       "Wrap paper filter with string",
     ],
-    category: "life hack",
+    category: { id: "2", name: "life hack" },
   },
   {
     title: "avocado",
@@ -48,7 +48,7 @@ const recipes = [
     craft_time: null,
     ingredients: ["avocado", "bowl"],
     directions: ["Smash avocado into a bowl", "Apply on the face"],
-    category: "life hack",
+    category: { id: "2", name: "life hack" },
   },
 ];
 
