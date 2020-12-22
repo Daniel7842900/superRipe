@@ -21,24 +21,36 @@ class RecipeCard extends Component {
     this.setState({ currentPage: page });
   };
 
+  handleCategorySelect = (category) => {
+    this.setState({ selectedCategory: category, currentPage: 1 });
+  };
+
   getPagedData = () => {
-    const { currentPage, pageSize, recipes: allRecipes } = this.state;
+    const {
+      currentPage,
+      pageSize,
+      recipes: allRecipes,
+      selectedCategory,
+    } = this.state;
+
+    // filter method returns filtered recipes by categories.
+    // If selectedCategory is truthy, we return recipes that have same category id with selected category id.
+    // Otherwise, we simply return all recipes.
+    const filtered = selectedCategory
+      ? allRecipes.filter((r) => r.category.id == selectedCategory.id)
+      : allRecipes;
 
     // paginate method returns items on current page.
-    const paginatedRecipes = paginate(allRecipes, currentPage, pageSize);
+    const paginatedRecipes = paginate(filtered, currentPage, pageSize);
 
-    return { paginatedRecipes, pageSize };
+    return { paginatedRecipes, pageSize, totalCount: filtered.length };
   };
 
   render() {
     // const { currentPage, pageSize, recipes: allRecipes } = this.state;
     const { match } = this.props;
 
-    // // paginate method returns items on current page.
-    // const paginatedRecipes = paginate(allRecipes, currentPage, pageSize);
-    // console.log(paginatedRecipes);
-
-    const { paginatedRecipes, pageSize } = this.getPagedData();
+    const { paginatedRecipes, pageSize, totalCount } = this.getPagedData();
 
     return (
       <Container>
@@ -46,7 +58,11 @@ class RecipeCard extends Component {
           <div className="recipe-div content-container">
             <div className="recipe-display-div">
               <div className="recipe-cat">
-                <ListGroupCustom></ListGroupCustom>
+                <ListGroupCustom
+                  items={this.state.categories}
+                  selectedItem={this.state.selectedCategory}
+                  onItemSelect={this.handleCategorySelect}
+                ></ListGroupCustom>
               </div>
               <Route
                 path={`${match.path}/:category?`}
@@ -58,7 +74,7 @@ class RecipeCard extends Component {
                 )}
               ></Route>
               <Paginate
-                itemsCount={this.state.recipes.length}
+                itemsCount={totalCount}
                 pageSize={pageSize}
                 onPageChange={this.handlePageChange}
               ></Paginate>

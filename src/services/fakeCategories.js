@@ -1,6 +1,6 @@
 export const categories = [
-  { id: "1", name: "food" },
-  { id: "2", name: "life hack" },
+  { id: "1", name: "Food" },
+  { id: "2", name: "Life Hack" },
 ];
 
 export function getCategories() {
