@@ -1,5 +1,6 @@
 const recipes = [
   {
+    id: "1",
     title: "banana split",
     prep_time: 5,
     craft_time: 5,
@@ -12,6 +13,7 @@ const recipes = [
     category: { id: "1", name: "food" },
   },
   {
+    id: "2",
     title: "banana smoothie",
     prep_time: 5,
     craft_time: 2,
@@ -24,6 +26,7 @@ const recipes = [
     category: { id: "1", name: "food" },
   },
   {
+    id: "3",
     title: "banana fertilizer",
     prep_time: 2,
     craft_time: 0,
@@ -32,6 +35,7 @@ const recipes = [
     category: { id: "2", name: "life hack" },
   },
   {
+    id: "4",
     title: "coffee air freshener",
     prep_time: 10,
     craft_time: null,
@@ -43,6 +47,7 @@ const recipes = [
     category: { id: "2", name: "life hack" },
   },
   {
+    id: "5",
     title: "avocado",
     prep_time: 15,
     craft_time: null,

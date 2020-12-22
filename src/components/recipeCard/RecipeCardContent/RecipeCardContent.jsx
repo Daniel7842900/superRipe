@@ -3,6 +3,7 @@ import React, { Component } from "react";
 class RecipeCardContent extends Component {
   render() {
     const { paginatedRecipes } = this.props;
+    console.log(paginatedRecipes);
 
     return (
       <div className="recipe-main-div">
@@ -17,12 +18,12 @@ class RecipeCardContent extends Component {
               <h4>Ingredients</h4>
               <ul id="ingredients"></ul>
               {recipe.ingredients.map((ingredient) => {
-                return <li>{ingredient}</li>;
+                return <li key={ingredient}>{ingredient}</li>;
               })}
               <h4>Direction</h4>
               <ul id="directions"></ul>
               {recipe.directions.map((direction) => {
-                return <li>{direction}</li>;
+                return <li key={direction}>{direction}</li>;
               })}
             </div>
           );
