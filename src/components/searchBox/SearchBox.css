@@ -10,8 +10,12 @@
 }
 
 .search-div {
-  display: inline-flex;
+  /* display: inline-flex; */
   padding-bottom: 2rem;
+}
+
+.search-form {
+  display: inline-flex;
 }
 
 .search-div input {
@@ -19,6 +23,11 @@
   height: 10vh;
   font-size: 3em;
 }
+
+/* .search-div button {
+  width: 6vw;
+  height: 10vh;
+} */
 
 #search-btn-img {
   width: 5vw;

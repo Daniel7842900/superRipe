@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class RecipeCardContent extends Component {
   render() {
     const { paginatedRecipes } = this.props;
-    console.log(paginatedRecipes);
+    // console.log(paginatedRecipes);
 
     return (
       <div className="recipe-main-div">

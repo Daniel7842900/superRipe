@@ -1,21 +1,26 @@
 import React, { Component } from "react";
-import { Route, Link } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { getRecipes } from "../../services/fakeRecipes";
 import { getCategories } from "../../services/fakeCategories";
 import { paginate } from "../../utils/paginate";
 import Paginate from "../common/pagination/Paginate";
-import RecipeCardContent from "./RecipeCardContent/RecipeCardContent";
 import ListGroupCustom from "../common/listgroupCustom";
-import "./RecipeCard.css";
+import RecipeCardContent from "./RecipeCardContent/RecipeCardContent";
 import { Container, Row } from "react-bootstrap";
+import "./RecipeCard.css";
 
 class RecipeCard extends Component {
   state = {
-    recipes: getRecipes(),
-    categories: getCategories(),
+    recipes: [],
+    categories: [],
     currentPage: 1,
     pageSize: 1,
   };
+
+  componentDidMount() {
+    const categories = [{ name: "All" }, ...getCategories()];
+    this.setState({ recipes: getRecipes(), categories });
+  }
 
   handlePageChange = (page) => {
     this.setState({ currentPage: page });
@@ -36,9 +41,11 @@ class RecipeCard extends Component {
     // filter method returns filtered recipes by categories.
     // If selectedCategory is truthy, we return recipes that have same category id with selected category id.
     // Otherwise, we simply return all recipes.
-    const filtered = selectedCategory
-      ? allRecipes.filter((r) => r.category.id == selectedCategory.id)
-      : allRecipes;
+    // selectedCategory.id is for "all" category. ("all" category doesn't have id)
+    const filtered =
+      selectedCategory && selectedCategory.id
+        ? allRecipes.filter((r) => r.category.id === selectedCategory.id)
+        : allRecipes;
 
     // paginate method returns items on current page.
     const paginatedRecipes = paginate(filtered, currentPage, pageSize);
@@ -49,6 +56,7 @@ class RecipeCard extends Component {
   render() {
     // const { currentPage, pageSize, recipes: allRecipes } = this.state;
     const { match } = this.props;
+    // console.log(match);
 
     const { paginatedRecipes, pageSize, totalCount } = this.getPagedData();
 
