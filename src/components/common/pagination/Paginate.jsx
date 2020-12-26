@@ -5,6 +5,7 @@ import Pagination from "react-bootstrap/Pagination";
 class Paginate extends Component {
   render() {
     const { itemsCount, pageSize, onPageChange } = this.props;
+    console.log("paginate rendering...");
 
     // Total page counts. We are displaying 1 item each page.
     const pagesCount = Math.ceil(itemsCount / pageSize);

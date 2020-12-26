@@ -1,27 +1,33 @@
 import React, { Component } from "react";
-import { Route, Switch, Redirect, withRouter } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import Home from "./components/pages/home/Home";
 import Recipe from "./components/pages/recipes/Recipe";
 import "./App.css";
 
 class App extends Component {
-  state = {
-    searchQuery: "",
-  };
+  // state = {
+  //   searchQuery: "",
+  //   searchResults: [],
+  // };
 
-  handleChange = (e) => {
-    // console.log(e.target.name);
-    // console.log(e.target.value);
-    this.setState({ searchQuery: e.target.value });
-  };
+  // componentDidMount() {
 
-  handleSearch = (e) => {
-    e.preventDefault();
-    let searchQuery = this.state.searchQuery;
-    // console.log(searchQuery);
+  // }
 
-    this.props.history.push(`/recipes/search?=` + searchQuery);
-  };
+  // handleChange = (e) => {
+  //   // Capture and update searchQuery whenever user types something in the input field.
+  //   this.setState({ searchQuery: e.target.value });
+  // };
+
+  // handleSearch = (e) => {
+  //   // Prevents full page reload.
+  //   e.preventDefault();
+
+  //   let searchQuery = this.state.searchQuery;
+
+  //   // Redirect users to the given url that contains the searchQuery.
+  //   this.props.history.push(`/recipes/search?=` + searchQuery);
+  // };
 
   render() {
     return (
@@ -31,9 +37,9 @@ class App extends Component {
             path="/recipes"
             render={(props) => (
               <Recipe
-                searchQuery={this.state.searchQuery}
-                onChange={this.handleChange}
-                onSearch={this.handleSearch}
+                // searchQuery={this.state.searchQuery}
+                // onChange={this.handleChange}
+                // onSearch={this.handleSearch}
                 {...props}
               ></Recipe>
             )}
@@ -42,9 +48,9 @@ class App extends Component {
             path="/"
             render={(props) => (
               <Home
-                searchQuery={this.state.searchQuery}
-                onChange={this.handleChange}
-                onSearch={this.handleSearch}
+                // searchQuery={this.state.searchQuery}
+                // onChange={this.handleChange}
+                // onSearch={this.handleSearch}
                 {...props}
               ></Home>
             )}

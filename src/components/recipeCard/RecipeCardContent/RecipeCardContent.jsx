@@ -4,6 +4,7 @@ class RecipeCardContent extends Component {
   render() {
     const { paginatedRecipes } = this.props;
     // console.log(paginatedRecipes);
+    console.log("RecipeCardContent is getting rendered...");
 
     return (
       <div className="recipe-main-div">

@@ -39,7 +39,7 @@ const recipes = [
     title: "coffee air freshener",
     prep_time: 10,
     craft_time: null,
-    ingredients: ["coffee ground", "paper filter", "string"],
+    ingredients: ["coffee", "paper filter", "string"],
     directions: [
       "Put coffee ground in paper filter",
       "Wrap paper filter with string",
