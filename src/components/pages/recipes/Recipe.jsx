@@ -16,6 +16,7 @@ class Recipe extends Component {
     currentPage: 1,
     pageSize: 1,
     searchQuery: "",
+    showRecipeCard: false,
   };
 
   componentDidMount() {
@@ -45,6 +46,7 @@ class Recipe extends Component {
 
     // Redirect users to the given url that contains the searchQuery.
     this.props.history.push(`/recipes/search?=` + searchQuery);
+    this.setState({ showRecipeCard: true });
   };
 
   getPagedData = () => {
@@ -54,6 +56,7 @@ class Recipe extends Component {
       recipes: allRecipes,
       selectedCategory,
       searchQuery,
+      showRecipeCard,
     } = this.state;
 
     console.log("paged data fired");
@@ -103,6 +106,7 @@ class Recipe extends Component {
           pageSize={pageSize}
           totalCount={totalCount}
           categories={categories}
+          isVisible={this.state.showRecipeCard}
           onPageChange={this.handlePageChange}
           onCategorySelect={this.handleCategorySelect}
         ></RecipeCard>

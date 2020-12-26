@@ -13,7 +13,24 @@ class RecipeCard extends Component {
     currentPage: 1,
     pageSize: 1,
     selectedCategory: "",
+    isVisible: false,
   };
+
+  renderRecipeResult(isVisible, match, paginatedRecipes) {
+    if (isVisible) {
+      return (
+        <Route
+              path={`${match.path}/:category?`}
+              render={(props) => (
+                <RecipeCardContent
+                  paginatedRecipes={paginatedRecipes}
+                  {...props}
+                ></RecipeCardContent>
+              )}
+            ></Route>
+      )
+    }
+  }
 
   render() {
     const {
@@ -24,6 +41,7 @@ class RecipeCard extends Component {
       categories,
       onCategorySelect,
       onPageChange,
+      isVisible,
     } = this.props;
     // console.log(match);
 
@@ -42,15 +60,9 @@ class RecipeCard extends Component {
                   onItemSelect={onCategorySelect}
                 ></ListGroupCustom>
               </div>
-              <Route
-                path={`${match.path}/:category?`}
-                render={(props) => (
-                  <RecipeCardContent
-                    paginatedRecipes={paginatedRecipes}
-                    {...props}
-                  ></RecipeCardContent>
-                )}
-              ></Route>
+
+              {this.renderRecipeResult(isVisible, match, paginatedRecipes)}
+              
               <Paginate
                 itemsCount={totalCount}
                 pageSize={pageSize}
