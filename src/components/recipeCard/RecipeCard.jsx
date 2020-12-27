@@ -7,30 +7,6 @@ import { Container, Row } from "react-bootstrap";
 import "./RecipeCard.css";
 
 class RecipeCard extends Component {
-  // state = {
-  //   recipes: [],
-  //   categories: [],
-  //   currentPage: 1,
-  //   pageSize: 1,
-  //   selectedCategory: "",
-  // };
-
-  // renderRecipeResult(isVisible, match, paginatedRecipes) {
-  //   if (isVisible) {
-  //     return (
-  //       <Route
-  //         path={`${match.path}/:category?`}
-  //         render={(props) => (
-  //           <RecipeCardContent
-  //             paginatedRecipes={paginatedRecipes}
-  //             {...props}
-  //           ></RecipeCardContent>
-  //         )}
-  //       ></Route>
-  //     );
-  //   }
-  // }
-
   render() {
     const {
       match,

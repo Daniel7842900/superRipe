@@ -26,10 +26,22 @@ class Recipe extends Component {
   }
 
   handlePageChange = (page) => {
-    this.setState({ currentPage: page });
+    // On page change (in pagination), we set that page as currentPage
+    // and then use that for parsing new paged data.
+    this.setState({ currentPage: page }, () => {
+      const { paginatedRecipes, pageSize, totalCount } = this.getPagedData();
+
+      this.setState({
+        paginatedRecipes: paginatedRecipes,
+        pageSize,
+        totalCount,
+      });
+    });
   };
 
   handleCategorySelect = (category) => {
+    // On category change (in pagination), we set that category as selectedCategory
+    // and then use that for parsing new paged data.
     this.setState(
       {
         selectedCategory: category,
@@ -39,7 +51,6 @@ class Recipe extends Component {
         const { paginatedRecipes, pageSize, totalCount } = this.getPagedData();
 
         this.setState({
-          // showRecipeCard: true,
           paginatedRecipes: paginatedRecipes,
           pageSize,
           totalCount,
@@ -88,7 +99,6 @@ class Recipe extends Component {
     // If selectedCategory is truthy, we return recipes that have same category id with selected category id.
     // Otherwise, we simply return all recipes.
     // selectedCategory.id is for "all" category. ("all" category doesn't have id)
-    console.log(selectedCategory);
     const filtered =
       selectedCategory && selectedCategory.id
         ? searched.filter((r) => r.category.id === selectedCategory.id)
