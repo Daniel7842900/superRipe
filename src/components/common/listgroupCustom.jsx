@@ -3,7 +3,7 @@ import { ListGroup, Container, Row } from "react-bootstrap";
 
 class ListGroupCustom extends Component {
   render() {
-    const { items, selectedItem, onItemSelect } = this.props;
+    const { items, onItemSelect } = this.props;
     console.log("list group rendering...");
 
     return (

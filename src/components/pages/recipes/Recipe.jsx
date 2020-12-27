@@ -16,7 +16,7 @@ class Recipe extends Component {
     currentPage: 1,
     pageSize: 1,
     searchQuery: "",
-    showRecipeCard: false,
+    paginatedRecipes: [],
   };
 
   componentDidMount() {
@@ -30,7 +30,22 @@ class Recipe extends Component {
   };
 
   handleCategorySelect = (category) => {
-    this.setState({ selectedCategory: category, currentPage: 1 });
+    this.setState(
+      {
+        selectedCategory: category,
+        currentPage: 1,
+      },
+      () => {
+        const { paginatedRecipes, pageSize, totalCount } = this.getPagedData();
+
+        this.setState({
+          // showRecipeCard: true,
+          paginatedRecipes: paginatedRecipes,
+          pageSize,
+          totalCount,
+        });
+      }
+    );
   };
 
   handleChange = (e) => {
@@ -46,7 +61,14 @@ class Recipe extends Component {
 
     // Redirect users to the given url that contains the searchQuery.
     this.props.history.push(`/recipes/search?=` + searchQuery);
-    this.setState({ showRecipeCard: true });
+
+    const { paginatedRecipes, pageSize, totalCount } = this.getPagedData();
+
+    this.setState({
+      paginatedRecipes: paginatedRecipes,
+      pageSize,
+      totalCount,
+    });
   };
 
   getPagedData = () => {
@@ -56,23 +78,17 @@ class Recipe extends Component {
       recipes: allRecipes,
       selectedCategory,
       searchQuery,
-      showRecipeCard,
     } = this.state;
-
-    console.log("paged data fired");
-    // const { searchQuery } = this.props;
-    console.log(searchQuery);
 
     const searched = allRecipes.filter(
       (r) => r.ingredients.includes(searchQuery) === true
     );
 
-    // console.log(searched);
-
     // filter method returns filtered recipes by categories.
     // If selectedCategory is truthy, we return recipes that have same category id with selected category id.
     // Otherwise, we simply return all recipes.
     // selectedCategory.id is for "all" category. ("all" category doesn't have id)
+    console.log(selectedCategory);
     const filtered =
       selectedCategory && selectedCategory.id
         ? searched.filter((r) => r.category.id === selectedCategory.id)
@@ -85,11 +101,15 @@ class Recipe extends Component {
   };
 
   render() {
-    const { categories } = this.state;
-    const { match, onSearch, onChange } = this.props;
-    const { paginatedRecipes, pageSize, totalCount } = this.getPagedData();
+    const {
+      categories,
+      paginatedRecipes,
+      pageSize,
+      totalCount,
+      selectedCategory,
+    } = this.state;
+    const { match } = this.props;
     const first_banner = "/resources/mainbanner-1440p.jpg";
-    console.log("Recipe is getting rendered...");
 
     return (
       <div className="page-wrapper">
@@ -106,7 +126,7 @@ class Recipe extends Component {
           pageSize={pageSize}
           totalCount={totalCount}
           categories={categories}
-          isVisible={this.state.showRecipeCard}
+          selectedCategory={selectedCategory}
           onPageChange={this.handlePageChange}
           onCategorySelect={this.handleCategorySelect}
         ></RecipeCard>

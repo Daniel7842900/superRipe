@@ -7,30 +7,29 @@ import { Container, Row } from "react-bootstrap";
 import "./RecipeCard.css";
 
 class RecipeCard extends Component {
-  state = {
-    recipes: [],
-    categories: [],
-    currentPage: 1,
-    pageSize: 1,
-    selectedCategory: "",
-    isVisible: false,
-  };
+  // state = {
+  //   recipes: [],
+  //   categories: [],
+  //   currentPage: 1,
+  //   pageSize: 1,
+  //   selectedCategory: "",
+  // };
 
-  renderRecipeResult(isVisible, match, paginatedRecipes) {
-    if (isVisible) {
-      return (
-        <Route
-              path={`${match.path}/:category?`}
-              render={(props) => (
-                <RecipeCardContent
-                  paginatedRecipes={paginatedRecipes}
-                  {...props}
-                ></RecipeCardContent>
-              )}
-            ></Route>
-      )
-    }
-  }
+  // renderRecipeResult(isVisible, match, paginatedRecipes) {
+  //   if (isVisible) {
+  //     return (
+  //       <Route
+  //         path={`${match.path}/:category?`}
+  //         render={(props) => (
+  //           <RecipeCardContent
+  //             paginatedRecipes={paginatedRecipes}
+  //             {...props}
+  //           ></RecipeCardContent>
+  //         )}
+  //       ></Route>
+  //     );
+  //   }
+  // }
 
   render() {
     const {
@@ -41,12 +40,7 @@ class RecipeCard extends Component {
       categories,
       onCategorySelect,
       onPageChange,
-      isVisible,
     } = this.props;
-    // console.log(match);
-
-    // const { paginatedRecipes, pageSize, totalCount } = this.getPagedData();
-    console.log("RecipeCard is getting rendered...");
 
     return (
       <Container>
@@ -56,13 +50,18 @@ class RecipeCard extends Component {
               <div className="recipe-cat">
                 <ListGroupCustom
                   items={categories}
-                  selectedItem={this.state.selectedCategory}
                   onItemSelect={onCategorySelect}
                 ></ListGroupCustom>
               </div>
-
-              {this.renderRecipeResult(isVisible, match, paginatedRecipes)}
-              
+              <Route
+                path={`${match.path}/:category?`}
+                render={(props) => (
+                  <RecipeCardContent
+                    paginatedRecipes={paginatedRecipes}
+                    {...props}
+                  ></RecipeCardContent>
+                )}
+              ></Route>
               <Paginate
                 itemsCount={totalCount}
                 pageSize={pageSize}
