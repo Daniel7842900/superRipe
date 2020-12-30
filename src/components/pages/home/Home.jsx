@@ -9,17 +9,31 @@ import Footer from "../../footer/Footer";
 
 class Home extends Component {
   render() {
-    const { searchQuery, onSearch, onChange } = this.props;
+    const {
+      match,
+      value,
+      onChange,
+      onSearch,
+      categories,
+      paginatedRecipes,
+      pageSize,
+      totalCount,
+      selectedCategory,
+      onPageChange,
+      onCategorySelect,
+    } = this.props;
+
     const first_banner = "/resources/mainbanner-1440p.jpg";
     const second_banner = "/resources/food1.jpg";
     const thrid_banner = "/resources/smoothie-1440p.jpg";
     console.log("Home is getting rendered...");
+
     return (
       <div className="page-wrapper">
         <Header></Header>
         <Banner img={first_banner}></Banner>
         <SearchBox
-          searchQuery={searchQuery}
+          value={value}
           onChange={onChange}
           onSearch={onSearch}
         ></SearchBox>
