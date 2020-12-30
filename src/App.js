@@ -145,13 +145,6 @@ class App extends Component {
                 value={this.state.searchQuery}
                 onChange={this.handleChange}
                 onSearch={this.handleSearch}
-                categories={categories}
-                paginatedRecipes={paginatedRecipes}
-                pageSize={pageSize}
-                totalCount={totalCount}
-                selectedCategory={selectedCategory}
-                onPageChange={this.handlePageChange}
-                onCategorySelect={this.handleCategorySelect}
                 {...props}
               ></Home>
             )}

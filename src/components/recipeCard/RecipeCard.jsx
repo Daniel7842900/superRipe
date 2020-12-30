@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import Paginate from "../common/pagination/Paginate";
 import ListGroupCustom from "../common/listgroupCustom";
 import RecipeCardContent from "./RecipeCardContent/RecipeCardContent";
-import { Container, Row } from "react-bootstrap";
+import { Card, Container, Row } from "react-bootstrap";
 import "./RecipeCard.css";
 
 class RecipeCard extends Component {
@@ -22,13 +22,13 @@ class RecipeCard extends Component {
       <Container>
         <Row>
           <div className="recipe-div content-container">
-            <div className="recipe-display-div">
-              <div className="recipe-cat">
+            <Card className="recipe-display-div" bg="success" text="dark">
+              <Card.Header className="recipe-cat">
                 <ListGroupCustom
                   items={categories}
                   onItemSelect={onCategorySelect}
                 ></ListGroupCustom>
-              </div>
+              </Card.Header>
               <Route
                 path={`${match.path}/:category?`}
                 render={(props) => (
@@ -43,7 +43,7 @@ class RecipeCard extends Component {
                 pageSize={pageSize}
                 onPageChange={onPageChange}
               ></Paginate>
-            </div>
+            </Card>
           </div>
         </Row>
       </Container>

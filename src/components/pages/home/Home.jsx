@@ -9,19 +9,7 @@ import Footer from "../../footer/Footer";
 
 class Home extends Component {
   render() {
-    const {
-      match,
-      value,
-      onChange,
-      onSearch,
-      categories,
-      paginatedRecipes,
-      pageSize,
-      totalCount,
-      selectedCategory,
-      onPageChange,
-      onCategorySelect,
-    } = this.props;
+    const { value, onChange, onSearch } = this.props;
 
     const first_banner = "/resources/mainbanner-1440p.jpg";
     const second_banner = "/resources/food1.jpg";
