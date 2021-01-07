@@ -13,9 +13,11 @@ class RecipeCard extends Component {
       pageSize,
       totalCount,
       paginatedRecipes,
+      currentPage,
       categories,
       onCategorySelect,
       onPageChange,
+      onPreviousPage,
     } = this.props;
 
     return (
@@ -40,7 +42,9 @@ class RecipeCard extends Component {
               <Paginate
                 itemsCount={totalCount}
                 pageSize={pageSize}
+                currentPage={currentPage}
                 onPageChange={onPageChange}
+                onPreviousPage={onPreviousPage}
               ></Paginate>
             </Card>
           </div>

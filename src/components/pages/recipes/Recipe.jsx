@@ -15,9 +15,11 @@ class Recipe extends Component {
       categories,
       paginatedRecipes,
       pageSize,
+      currentPage,
       totalCount,
       selectedCategory,
       onPageChange,
+      onPreviousPage,
       onCategorySelect,
     } = this.props;
 
@@ -39,7 +41,9 @@ class Recipe extends Component {
           totalCount={totalCount}
           categories={categories}
           selectedCategory={selectedCategory}
+          currentPage={currentPage}
           onPageChange={onPageChange}
+          onPreviousPage={onPreviousPage}
           onCategorySelect={onCategorySelect}
         ></RecipeCard>
         <Footer></Footer>

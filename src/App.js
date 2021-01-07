@@ -24,6 +24,18 @@ class App extends Component {
     this.setState({ recipes: getRecipes(), categories });
   }
 
+  handlePreviousPage = (page) => {
+    this.setState({ currentPage: page - 1 }, () => {
+      const { paginatedRecipes, pageSize, totalCount } = this.getPagedData();
+
+      this.setState({
+        paginatedRecipes: paginatedRecipes,
+        pageSize,
+        totalCount,
+      });
+    });
+  };
+
   handlePageChange = (page) => {
     // On page change (in pagination), we set that page as currentPage
     // and then use that for parsing new paged data.
@@ -116,6 +128,7 @@ class App extends Component {
       pageSize,
       totalCount,
       selectedCategory,
+      currentPage,
     } = this.state;
 
     return (
@@ -132,9 +145,11 @@ class App extends Component {
                 categories={categories}
                 paginatedRecipes={paginatedRecipes}
                 pageSize={pageSize}
+                currentPage={currentPage}
                 totalCount={totalCount}
                 selectedCategory={selectedCategory}
                 onPageChange={this.handlePageChange}
+                onPreviousPage={this.handlePreviousPage}
                 onCategorySelect={this.handleCategorySelect}
                 {...props}
               ></Recipe>
