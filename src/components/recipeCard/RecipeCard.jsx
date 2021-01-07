@@ -22,7 +22,7 @@ class RecipeCard extends Component {
       <Container>
         <Row>
           <div className="recipe-div content-container">
-            <Card className="recipe-display-div" bg="success" text="dark">
+            <Card className="recipe-display-div" text="dark">
               <Card.Header className="recipe-cat">
                 <ListGroupCustom
                   items={categories}
@@ -30,7 +30,6 @@ class RecipeCard extends Component {
                 ></ListGroupCustom>
               </Card.Header>
               <Route
-                path={`${match.path}/:category?`}
                 render={(props) => (
                   <RecipeCardContent
                     paginatedRecipes={paginatedRecipes}

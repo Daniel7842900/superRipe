@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Route, Switch, withRouter } from "react-router-dom";
+import { Redirect, Route, Switch, withRouter } from "react-router-dom";
 import Home from "./components/pages/home/Home";
 import Recipe from "./components/pages/recipes/Recipe";
+import NotFound from "./components/pages/notFound/NotFound";
 import { getCategories } from "./services/fakeCategories";
 import { getRecipes } from "./services/fakeRecipes";
 import { paginate } from "./utils/paginate";
@@ -122,6 +123,7 @@ class App extends Component {
         <Switch>
           <Route
             path="/recipes"
+            exact
             render={(props) => (
               <Recipe
                 value={this.state.searchQuery}
@@ -140,6 +142,7 @@ class App extends Component {
           ></Route>
           <Route
             path="/"
+            exact
             render={(props) => (
               <Home
                 value={this.state.searchQuery}
@@ -149,6 +152,7 @@ class App extends Component {
               ></Home>
             )}
           ></Route>
+          <Route component={NotFound}></Route>
         </Switch>
       </React.Fragment>
     );

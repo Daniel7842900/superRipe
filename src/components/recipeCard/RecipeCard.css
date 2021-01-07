@@ -10,11 +10,7 @@
   border: 1px solid;
   margin: 0 auto;
   width: 60vw;
-}
-
-.recipe-main-div h4 {
-  text-align: center;
-  font-size: 2em;
+  background-color: #cfe8d7 !important;
 }
 
 .recipe-cat {
@@ -24,25 +20,6 @@
 .btn-recipe-cat {
   margin-left: 1em;
   margin-right: 1em;
-}
-
-#recipe-name {
-  font-size: 3em;
-}
-
-#prep-time {
-  text-align: center;
-}
-
-#ingredients {
-  display: block;
-  padding-top: 0;
-}
-
-#directions {
-  display: block;
-  padding-top: 0;
-  padding-bottom: 2rem;
 }
 
 .pagination {

@@ -8,13 +8,13 @@ class NavBar extends Component {
       <Navbar className="nav-bar p-0">
         <Nav className="nav justify-content-center m-0 p-0" as="ul">
           <Nav.Item as="li" className="nav-cat">
-            <Nav.Link href="#how">how</Nav.Link>
+            <Nav.Link href="/#how">How</Nav.Link>
           </Nav.Item>
           <Nav.Item as="li" className="nav-cat">
-            <Nav.Link href="#why">why</Nav.Link>
+            <Nav.Link href="/#why">Why</Nav.Link>
           </Nav.Item>
           <Nav.Item as="li" className="nav-cat">
-            <Nav.Link href="#about">about</Nav.Link>
+            <Nav.Link href="/#about">About</Nav.Link>
           </Nav.Item>
         </Nav>
       </Navbar>

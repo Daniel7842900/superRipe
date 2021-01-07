@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { Card } from "react-bootstrap";
+import "./RecipeCardContent.css";
 
 class RecipeCardContent extends Component {
   render() {
     const { paginatedRecipes } = this.props;
-    // console.log(paginatedRecipes);
-    // console.log("RecipeCardContent is getting rendered...");
 
     if (paginatedRecipes.length !== 0) {
       return (
@@ -17,19 +16,28 @@ class RecipeCardContent extends Component {
                   <h4>{recipe.title}</h4>
                 </Card.Title>
                 <Card.Text>
-                  <p id="prep-time">Prep time: {recipe.prep_time}</p>
-                  <br />
-                  <p id="craft-time">Craft time: {recipe.craft_time}</p>
-                  <h4>Ingredients</h4>
-                  <ul id="ingredients"></ul>
-                  {recipe.ingredients.map((ingredient) => {
-                    return <li key={ingredient}>{ingredient}</li>;
-                  })}
-                  <h4>Direction</h4>
-                  <ul id="directions"></ul>
-                  {recipe.directions.map((direction) => {
-                    return <li key={direction}>{direction}</li>;
-                  })}
+                  <div className="recipe-time-div">
+                    <span>
+                      <p id="prep-time">Prep time: {recipe.prep_time} </p>
+                      <p id="craft-time"> Craft time: {recipe.craft_time}</p>
+                    </span>
+                  </div>
+                  <div className="recipe-ingredients-div">
+                    <h4>Ingredients</h4>
+                    <ul id="ingredients">
+                      {recipe.ingredients.map((ingredient) => {
+                        return <li key={ingredient}>{ingredient}</li>;
+                      })}
+                    </ul>
+                  </div>
+                  <div className="recipe-directions-div">
+                    <h4>Direction</h4>
+                    <ol id="directions">
+                      {recipe.directions.map((direction) => {
+                        return <li key={direction}>{direction}</li>;
+                      })}
+                    </ol>
+                  </div>
                 </Card.Text>
               </div>
             );

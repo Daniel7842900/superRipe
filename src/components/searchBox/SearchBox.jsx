@@ -19,7 +19,7 @@ class SearchBox extends Component {
               <Form.Group controlId="formSearchBox">
                 <Form.Control
                   type="text"
-                  placeholder="Search food..."
+                  placeholder="Search recipe..."
                   name="search"
                   onChange={onChange}
                 ></Form.Control>

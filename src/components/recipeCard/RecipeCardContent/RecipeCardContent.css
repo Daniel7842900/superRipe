@@ -1,0 +1,50 @@
+.recipe-main-div h4 {
+  text-align: center;
+  font-size: 2em;
+}
+
+#recipe-name {
+  font-size: 3em;
+}
+
+#prep-time {
+  text-align: center;
+}
+
+#ingredients {
+  display: block;
+  padding-top: 0;
+  padding-left: 15rem;
+}
+
+#directions {
+  display: block;
+  padding-left: 15rem;
+}
+
+.recipe-time-div {
+  text-align: center;
+}
+
+.recipe-time-div p {
+  display: inline-block;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+.recipe-ingredients-div {
+  text-align: left;
+}
+
+.recipe-ingredients-div h4 {
+  text-align: center;
+}
+
+.recipe-directions-div {
+  text-align: left;
+}
+
+.recipe-directions-div h4 {
+  text-align: center;
+  padding-top: 1rem;
+}

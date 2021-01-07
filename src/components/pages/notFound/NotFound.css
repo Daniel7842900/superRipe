@@ -1,0 +1,25 @@
+#top404 {
+  text-align: center;
+  margin-top: 10rem;
+  background-color: #e36b81;
+}
+
+#top404 h1 {
+  font-size: 10rem;
+  color: #ac003a;
+}
+
+#top404 p {
+  font-size: 3rem;
+  color: white;
+}
+
+#bottom404 {
+  text-align: center;
+  margin-top: 10rem;
+  background-color: #fcc31c;
+}
+
+#logo-btn-img {
+  width: 70%;
+}
