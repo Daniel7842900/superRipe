@@ -10,6 +10,7 @@ class Paginate extends Component {
       onPageChange,
       currentPage,
       onPreviousPage,
+      onNextPage,
     } = this.props;
     console.log("paginate rendering...");
 
@@ -36,7 +37,14 @@ class Paginate extends Component {
             {page}
           </Pagination.Item>
         ))}
-        <Pagination.Next></Pagination.Next>
+        {!pages.includes(currentPage + 1) && (
+          <Pagination.Next disabled></Pagination.Next>
+        )}
+        {pages.includes(currentPage + 1) && (
+          <Pagination.Next
+            onClick={() => onNextPage(currentPage)}
+          ></Pagination.Next>
+        )}
       </Pagination>
     );
   }

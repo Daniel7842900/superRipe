@@ -18,6 +18,7 @@ class RecipeCard extends Component {
       onCategorySelect,
       onPageChange,
       onPreviousPage,
+      onNextPage,
     } = this.props;
 
     return (
@@ -45,6 +46,7 @@ class RecipeCard extends Component {
                 currentPage={currentPage}
                 onPageChange={onPageChange}
                 onPreviousPage={onPreviousPage}
+                onNextPage={onNextPage}
               ></Paginate>
             </Card>
           </div>
