@@ -84,7 +84,7 @@ class App extends Component {
 
   handleChange = (e) => {
     // Capture and update searchQuery whenever user types something in the input field.
-    this.setState({ searchQuery: e.target.value });
+    this.setState({ searchQuery: e.target.value.toLowerCase() });
   };
 
   handleSearch = (e) => {
@@ -147,7 +147,7 @@ class App extends Component {
       <React.Fragment>
         <Switch>
           <Route
-            path="/recipes"
+            path="/recipes/:search?"
             exact
             render={(props) => (
               <Recipe

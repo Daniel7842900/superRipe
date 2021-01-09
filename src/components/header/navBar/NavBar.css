@@ -1,28 +1,67 @@
 /* header (including navigation bar) style */
 
-.nav-bar {
-  width: 100%;
-  height: 20vh;
-  top: 0;
-  text-align: center;
+/* Extra small devices (phones) */
+@media only screen and (max-width: 600px) {
+  .nav-bar {
+    background-color: #e36b81;
+    width: 100%;
+  }
+
+  #navbar-brand-favicon {
+    width: 5vw;
+  }
+
+  .navbar-brand {
+    color: yellow !important;
+    font-size: 2rem !important;
+  }
+
+  .navbar-brand span {
+    padding-left: 0.1em;
+    padding-right: 0.1em;
+  }
+
+  .navbar-toggler {
+    color: white !important;
+    font-size: 2rem !important;
+    border: 0 !important;
+  }
+
+  .nav {
+    font-size: 1.5rem;
+  }
+
+  .nav-link {
+    color: white !important;
+  }
 }
 
-.nav {
-  height: 100%;
-  width: 100%;
-  background-color: #e36b81;
-  display: inline-flex;
-  list-style-type: none;
-  font-size: 5em;
-}
+/* Large devices (laptops/desktops) */
+@media only screen and (min-width: 992px) {
+  .nav-bar {
+    width: 100%;
+    height: 20vh;
+    top: 0;
+    text-align: center;
+    background-color: #e36b81;
+  }
 
-.nav-cat {
-  padding-left: 1em;
-  padding-right: 1em;
-}
+  .nav {
+    height: 100%;
+    width: 100%;
+    display: inline-flex;
+    list-style-type: none;
+    font-size: 5em;
+  }
 
-.nav-link {
-  color: white !important;
+  .nav-cat {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+  .nav-link {
+    color: white !important;
+  }
 }
 
 /* End - header (including navigation bar) style */

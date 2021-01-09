@@ -9,3 +9,14 @@
   flex-direction: column;
 }
 /* End - Entire content (including header, content, and footer) container style */
+
+/* Large devices (laptops/desktops) */
+@media only screen and (min-width: 992px) {
+  /* Entire content (including header, content, and footer) container style */
+  .page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  /* End - Entire content (including header, content, and footer) container style */
+}

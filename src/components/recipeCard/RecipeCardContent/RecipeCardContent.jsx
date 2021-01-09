@@ -18,8 +18,18 @@ class RecipeCardContent extends Component {
                 <Card.Text>
                   <div className="recipe-time-div">
                     <span>
-                      <p id="prep-time">Prep time: {recipe.prep_time} </p>
-                      <p id="craft-time"> Craft time: {recipe.craft_time}</p>
+                      {recipe.prep_time ? (
+                        <p id="prep-time">Prep time: {recipe.prep_time} mins</p>
+                      ) : (
+                        <p id="prep-time">Prep time: 0 mins</p>
+                      )}
+                      {recipe.craft_time ? (
+                        <p id="craft-time">
+                          Craft time: {recipe.craft_time} mins
+                        </p>
+                      ) : (
+                        <p id="craft-time">Craft time: 0 mins</p>
+                      )}
                     </span>
                   </div>
                   <div className="recipe-ingredients-div">
