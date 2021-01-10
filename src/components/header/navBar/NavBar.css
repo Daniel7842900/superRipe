@@ -72,6 +72,42 @@
   }
 }
 
+/* Medium devices (landscape tablets) */
+@media only screen and (min-width: 768px) {
+  .nav-bar {
+    background-color: #e36b81;
+    width: 100%;
+  }
+
+  #navbar-brand-favicon {
+    width: 5vw;
+  }
+
+  .navbar-brand {
+    color: yellow !important;
+    font-size: 2rem !important;
+  }
+
+  .navbar-brand span {
+    padding-left: 0.1em;
+    padding-right: 0.1em;
+  }
+
+  .navbar-toggler {
+    color: white !important;
+    font-size: 2rem !important;
+    border: 0 !important;
+  }
+
+  .nav {
+    font-size: 1.5rem;
+  }
+
+  .nav-link {
+    color: white !important;
+  }
+}
+
 /* Large devices (laptops/desktops) */
 @media only screen and (min-width: 992px) {
   .nav-bar {
