@@ -1,18 +1,48 @@
-footer {
-  height: 20vh;
-  background-color: #e36b81;
+/* footer style */
+
+/* Extra small devices (phones) */
+@media only screen and (max-width: 600px) {
+  footer {
+    height: 20vh;
+    background-color: #e36b81;
+  }
+
+  .contact-us-div {
+    font-size: 2em;
+    text-align: center;
+  }
+
+  .contact-us-div p {
+    margin: auto;
+    padding: 0.5rem 0;
+  }
+
+  .contact-us-div p a:first-child {
+    color: blue;
+    text-decoration: none;
+  }
 }
 
-.contact-us-div {
-  font-size: 2em;
-  text-align: center;
+/* Large devices (laptops/desktops) */
+@media only screen and (min-width: 992px) {
+  footer {
+    height: 20vh;
+    background-color: #e36b81;
+  }
+
+  .contact-us-div {
+    font-size: 2em;
+    text-align: center;
+  }
+
+  .contact-us-div p {
+    padding: 0.5rem 0;
+  }
+
+  .contact-us-div p a:first-child {
+    color: blue;
+    text-decoration: none;
+  }
 }
 
-.contact-us-div p {
-  padding: 0.5rem 0;
-}
-
-.contact-us-div p a:first-child {
-  color: blue;
-  text-decoration: none;
-}
+/* End - footer style */
