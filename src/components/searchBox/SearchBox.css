@@ -7,7 +7,7 @@
   }
 
   .main-top-div h1 {
-    font-size: 5rem;
+    font-size: 3.5rem;
     margin: 0;
     padding: 2rem 0 2rem 0;
   }
@@ -21,14 +21,14 @@
   }
 
   .search-div input {
-    width: 50vw;
+    width: 60vw;
     height: 10vh;
-    font-size: 2rem;
+    font-size: 1rem;
   }
 
   #search-btn-img {
-    width: 7vw;
-    height: 6vh;
+    width: 8vw;
+    height: 7vh;
   }
 }
 

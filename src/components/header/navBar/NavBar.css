@@ -8,12 +8,12 @@
   }
 
   #navbar-brand-favicon {
-    width: 5vw;
+    width: 8vw;
   }
 
   .navbar-brand {
     color: yellow !important;
-    font-size: 2rem !important;
+    font-size: 1.5rem !important;
   }
 
   .navbar-brand span {
@@ -123,12 +123,12 @@
     width: 100%;
     display: inline-flex;
     list-style-type: none;
-    font-size: 5em;
+    font-size: 3rem;
   }
 
   .nav-cat {
-    padding-left: 1em;
-    padding-right: 1em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
   }
 
   .nav-link {

@@ -21,7 +21,7 @@ class NavBar extends Component {
           <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
         </Navbar.Toggle>
         <Navbar.Collapse id="top-navbar-nav">
-          <Nav className="nav justify-content-center m-0 p-0 mr-auto" as="ul">
+          <Nav className="nav justify-content-end m-0 p-0 mr-auto" as="ul">
             <Nav.Item as="li" className="nav-cat">
               <Nav.Link href="/#how">How</Nav.Link>
             </Nav.Item>
