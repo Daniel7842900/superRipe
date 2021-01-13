@@ -1,7 +1,7 @@
 /* How section style */
 
 /* Extra small devices (phones) */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 446px) {
   .how-top-div {
     width: 100vw;
     height: 25vh;
@@ -13,6 +13,37 @@
     font-size: 3rem;
     margin: 0;
     padding: 0.5rem 0 0 0;
+  }
+
+  .how-main-div {
+    width: 100vw;
+  }
+
+  .how-description {
+    width: 100vw;
+    text-align: center;
+  }
+
+  .how-description p {
+    font-size: 1.5rem;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+}
+
+/* Extra small devices (phones) */
+@media only screen and (min-width: 447px) and (max-width: 600px) {
+  .how-top-div {
+    width: 100vw;
+    height: 25vh;
+    text-align: center;
+    background-color: #fcc31c;
+  }
+
+  .how-top-div h1 {
+    font-size: 3rem;
+    margin: 0;
+    padding: 2rem 0 0 0;
   }
 
   .how-main-div {

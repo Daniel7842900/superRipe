@@ -17,7 +17,7 @@ class ListGroupCustom extends Component {
                 variant="info"
                 onClick={() => onItemSelect(item)}
               >
-                {item.name}
+                <span>{item.name}</span>
               </ListGroup.Item>
             ))}
           </ListGroup>
