@@ -14,7 +14,6 @@ class Home extends Component {
     const first_banner = "/resources/mainbanner-1440p.jpg";
     const second_banner = "/resources/food1.jpg";
     const thrid_banner = "/resources/smoothie-1440p.jpg";
-    console.log("Home is getting rendered...");
 
     return (
       <div className="page-wrapper">

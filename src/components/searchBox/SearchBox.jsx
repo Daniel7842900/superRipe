@@ -6,7 +6,6 @@ import "./SearchBox.css";
 class SearchBox extends Component {
   render() {
     const { onChange, onSearch } = this.props;
-    console.log("SearchBox is getting rendered...");
 
     return (
       <div className="main-function-div content-container">
