@@ -1,110 +1,43 @@
-/* header (including navigation bar) style */
+/* nav bar style */
 
-/* Extra small devices (phones) */
-@media only screen and (max-width: 600px) {
-  .nav-bar {
-    background-color: #e36b81;
-    width: 100%;
-  }
-
-  #navbar-brand-favicon {
-    width: 8vw;
-  }
-
-  .navbar-brand {
-    color: yellow !important;
-    font-size: 1.5rem !important;
-  }
-
-  .navbar-brand span {
-    padding-left: 0.1em;
-    padding-right: 0.1em;
-  }
-
-  .navbar-toggler {
-    color: white !important;
-    font-size: 2rem !important;
-    border: 0 !important;
-  }
-
-  .nav {
-    font-size: 1.5rem;
-  }
-
-  .nav-link {
-    color: white !important;
-  }
+/* Common style */
+.nav-bar {
+  background-color: #e36b81;
+  width: 100%;
 }
 
-/* Small devices (portrait tablets and large phones) */
-@media only screen and (min-width: 600px) {
-  .nav-bar {
-    background-color: #e36b81;
-    width: 100%;
-  }
+.navbar-brand span {
+  padding-left: 0.1em;
+  padding-right: 0.1em;
+}
 
-  #navbar-brand-favicon {
-    width: 5vw;
-  }
+.navbar-toggler {
+  color: white !important;
+  font-size: 2rem !important;
+  border: 0 !important;
+}
 
-  .navbar-brand {
-    color: yellow !important;
-    font-size: 2rem !important;
-  }
+.nav {
+  font-size: 1.5rem;
+}
 
-  .navbar-brand span {
-    padding-left: 0.1em;
-    padding-right: 0.1em;
-  }
+.nav-link {
+  color: white !important;
+}
 
-  .navbar-toggler {
-    color: white !important;
-    font-size: 2rem !important;
-    border: 0 !important;
-  }
+#navbar-brand-favicon {
+  width: 8vw;
+}
 
-  .nav {
-    font-size: 1.5rem;
-  }
-
-  .nav-link {
-    color: white !important;
-  }
+.navbar-brand {
+  color: yellow !important;
+  font-size: 2rem !important;
 }
 
 /* Medium devices (landscape tablets) */
 @media only screen and (min-width: 768px) {
-  .nav-bar {
-    background-color: #e36b81;
-    width: 100%;
-  }
-
   #navbar-brand-favicon {
     width: 5vw;
-  }
-
-  .navbar-brand {
-    color: yellow !important;
-    font-size: 2rem !important;
-  }
-
-  .navbar-brand span {
-    padding-left: 0.1em;
-    padding-right: 0.1em;
-  }
-
-  .navbar-toggler {
-    color: white !important;
-    font-size: 2rem !important;
-    border: 0 !important;
-  }
-
-  .nav {
-    font-size: 1.5rem;
-  }
-
-  .nav-link {
-    color: white !important;
   }
 }
 
@@ -130,10 +63,6 @@
     padding-left: 0.5em;
     padding-right: 0.5em;
   }
-
-  .nav-link {
-    color: white !important;
-  }
 }
 
-/* End - header (including navigation bar) style */
+/* End - nav bar style */

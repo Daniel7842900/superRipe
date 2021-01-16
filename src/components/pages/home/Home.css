@@ -1,7 +1,9 @@
 /* Entire content (including header, content, and footer) container style */
+
 .page-wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
+
 /* End - Entire content (including header, content, and footer) container style */
