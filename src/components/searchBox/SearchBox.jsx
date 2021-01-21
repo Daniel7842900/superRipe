@@ -21,6 +21,7 @@ class SearchBox extends Component {
                   placeholder="Search recipe..."
                   name="search"
                   onChange={onChange}
+                  autoComplete="off"
                 ></Form.Control>
               </Form.Group>
               <Button type="submit" variant="link" className="m-0 p-2">

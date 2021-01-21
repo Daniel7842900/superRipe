@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import { Redirect, Route, Switch, withRouter } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import Home from "./components/pages/home/Home";
 import Recipe from "./components/pages/recipes/Recipe";
 import NotFound from "./components/pages/notFound/NotFound";
-import { getCategories } from "./services/fakeCategories";
-import { getRecipes } from "./services/fakeRecipes";
 import { paginate } from "./utils/paginate";
 
 class App extends Component {
@@ -18,12 +16,15 @@ class App extends Component {
     paginatedRecipes: [],
   };
 
-  componentDidMount() {
-    const categories = [{ name: "All" }, ...getCategories()];
-
-    this.setState({ recipes: getRecipes(), categories });
+  async componentDidMount() {
+    const url = "/api/recipes";
+    const response = await fetch(url);
+    const data = await response.json();
+    const categories = [{ name: "All" }, ...data["categories"]];
+    this.setState({ recipes: data["recipes"], categories });
   }
 
+  /* Handling previous button function of pagination */
   handlePreviousPage = (page) => {
     this.setState({ currentPage: page - 1 }, () => {
       const { paginatedRecipes, pageSize, totalCount } = this.getPagedData();
@@ -36,6 +37,7 @@ class App extends Component {
     });
   };
 
+  /* Handling next button function of pagination */
   handleNextPage = (page) => {
     this.setState({ currentPage: page + 1 }, () => {
       const { paginatedRecipes, pageSize, totalCount } = this.getPagedData();
@@ -63,8 +65,9 @@ class App extends Component {
   };
 
   handleCategorySelect = (category) => {
-    // On category change (in pagination), we set that category as selectedCategory
+    // On category change, we set that category as selectedCategory
     // and then use that for parsing new paged data.
+    console.log(category);
     this.setState(
       {
         selectedCategory: category,
@@ -94,7 +97,7 @@ class App extends Component {
     let searchQuery = this.state.searchQuery;
 
     // Redirect users to the given url that contains the searchQuery.
-    this.props.history.push(`/recipes/?search=` + searchQuery);
+    this.props.history.push(`/recipes?search=` + searchQuery);
 
     const { paginatedRecipes, pageSize, totalCount } = this.getPagedData();
 
@@ -124,7 +127,7 @@ class App extends Component {
     // selectedCategory.id is for "all" category. ("all" category doesn't have id)
     const filtered =
       selectedCategory && selectedCategory.id
-        ? searched.filter((r) => r.category.id === selectedCategory.id)
+        ? searched.filter((r) => r.category_id === selectedCategory.id)
         : searched;
 
     // paginate method returns items on current page.

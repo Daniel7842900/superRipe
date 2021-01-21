@@ -48,8 +48,8 @@ const recipes = [
   },
   {
     id: "5",
-    title: "avocado",
-    prep_time: 15,
+    title: "avocado face mask",
+    prep_time: 7,
     craft_time: null,
     ingredients: ["avocado", "bowl"],
     directions: ["Smash avocado into a bowl", "Apply on the face"],
