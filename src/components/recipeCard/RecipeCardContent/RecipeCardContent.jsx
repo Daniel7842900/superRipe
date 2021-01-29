@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, Text } from "react";
 import { Card } from "react-bootstrap";
+import { capitalizeFirstLetter } from "../../../utils/capitalize";
 import "./RecipeCardContent.css";
 
 class RecipeCardContent extends Component {
@@ -13,7 +14,7 @@ class RecipeCardContent extends Component {
             return (
               <div>
                 <Card.Title id="recipe-name">
-                  <h4>{recipe.title}</h4>
+                  <h4>{capitalizeFirstLetter(recipe.title)}</h4>
                 </Card.Title>
                 <Card.Text>
                   <div className="recipe-time-div">
@@ -56,7 +57,7 @@ class RecipeCardContent extends Component {
       );
     } else {
       return (
-        <div className="recipe-main-div">
+        <div className="recipe-main-div no-recipe">
           <h2>Sorry, a recipe doesn't exist!</h2>
         </div>
       );

@@ -27,10 +27,12 @@
   font-size: 1.5rem;
   padding-left: 1em;
   padding-right: 1em;
+  font-family: "Montserrat", sans-serif;
 }
 
 .about-top-div h1 {
   margin: 0;
+  font-family: "Yusei Magic", sans-serif;
 }
 
 /* Small devices (portrait tablets and large phones) */

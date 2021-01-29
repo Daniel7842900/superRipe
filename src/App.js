@@ -17,9 +17,12 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    const url = "/api/recipes";
+    // const url = "/api/recipes";
+    const url = `${process.env.REACT_APP_API_URL}/recipes`;
+    // console.log(url);
     const response = await fetch(url);
     const data = await response.json();
+    console.log(data["recipes"]);
     const categories = [{ name: "All" }, ...data["categories"]];
     this.setState({ recipes: data["recipes"], categories });
   }
@@ -117,9 +120,16 @@ class App extends Component {
       searchQuery,
     } = this.state;
 
-    const searched = allRecipes.filter(
-      (r) => r.ingredients.includes(searchQuery) === true
-    );
+    const searched = [];
+
+    for (let i = 0; i < allRecipes.length; i++) {
+      let recipe = allRecipes[i];
+      for (let j = 0; j < recipe.ingredients.length; j++) {
+        if (recipe.ingredients[j].includes(searchQuery) === true) {
+          searched.push(recipe);
+        }
+      }
+    }
 
     // filter method returns filtered recipes by categories.
     // If selectedCategory is truthy, we return recipes that have same category id with selected category id.

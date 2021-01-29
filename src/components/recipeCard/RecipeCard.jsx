@@ -9,7 +9,6 @@ import "./RecipeCard.css";
 class RecipeCard extends Component {
   render() {
     const {
-      match,
       pageSize,
       totalCount,
       paginatedRecipes,

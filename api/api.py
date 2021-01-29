@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
 from dotenv import load_dotenv
 import os
 
@@ -8,8 +9,11 @@ load_dotenv()
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:' + \
-    os.getenv("DB_PASSWORD") + '@localhost/superRipe'
+    os.getenv("DEV_DB_PASSWORD") + '@localhost/superRipe'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:' + \
+#     os.getenv("DB_PASSWORD") + '@' + os.getenv("DB_END_POINT") + '/superripe'
 db = SQLAlchemy(app)
+CORS(app)
 
 
 class Recipes(db.Model):
@@ -59,6 +63,13 @@ def categories_serializer(category):
         'id': category.id,
         'name': category.name
     }
+
+# This route is needed for the default EB health check
+
+
+@app.route('/')
+def home():
+    return "ok"
 
 
 @app.route('/api/recipes', methods=['GET'])
