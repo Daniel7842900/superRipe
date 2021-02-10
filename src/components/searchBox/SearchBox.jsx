@@ -5,7 +5,7 @@ import "./SearchBox.css";
 
 class SearchBox extends Component {
   render() {
-    const { onChange, onSearch } = this.props;
+    const { onChange, onSearch, value } = this.props;
 
     return (
       <div className="main-function-div content-container">
@@ -22,6 +22,8 @@ class SearchBox extends Component {
                   name="search"
                   onChange={onChange}
                   autoComplete="off"
+                  className="search-input"
+                  value={value}
                 ></Form.Control>
               </Form.Group>
               <Button type="submit" variant="link" className="m-0 p-2">

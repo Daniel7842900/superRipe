@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Footer /> matches snapshot 1`] = `
+<footer>
+  <div
+    className="contact-us-div"
+  >
+    <p>
+      Contact us about our app at
+    </p>
+    <p>
+      <a
+        href=""
+      >
+        superripe_info@gmail.com
+      </a>
+    </p>
+  </div>
+</footer>
+`;

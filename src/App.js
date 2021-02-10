@@ -177,6 +177,7 @@ class App extends Component {
                 onPreviousPage={this.handlePreviousPage}
                 onNextPage={this.handleNextPage}
                 onCategorySelect={this.handleCategorySelect}
+                searchQuery={this.searchQuery}
                 {...props}
               ></Recipe>
             )}
