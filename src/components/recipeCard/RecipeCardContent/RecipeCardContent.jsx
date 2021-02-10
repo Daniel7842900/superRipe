@@ -1,4 +1,5 @@
-import React, { Component, Text } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Card } from "react-bootstrap";
 import { capitalizeFirstLetter } from "../../../utils/capitalize";
 import "./RecipeCardContent.css";
@@ -64,5 +65,9 @@ class RecipeCardContent extends Component {
     }
   }
 }
+
+RecipeCardContent.propTypes = {
+  paginatedRecipes: PropTypes.array,
+};
 
 export default RecipeCardContent;
