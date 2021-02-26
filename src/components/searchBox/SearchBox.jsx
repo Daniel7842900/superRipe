@@ -14,7 +14,7 @@ class SearchBox extends Component {
         </div>
         <div className="main-search-div">
           <div className="search-div">
-            <Form className="search-form" onSubmit={onSearch}>
+            <Form className="search-form" onSubmit={onSearch} method="POST">
               <Form.Group controlId="formSearchBox">
                 <Form.Control
                   type="text"

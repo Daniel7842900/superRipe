@@ -22,7 +22,7 @@ class App extends Component {
     // console.log(url);
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data["recipes"]);
+    // console.log(data["recipes"]);
     const categories = [{ name: "All" }, ...data["categories"]];
     this.setState({ recipes: data["recipes"], categories });
   }
@@ -102,14 +102,51 @@ class App extends Component {
     // Redirect users to the given url that contains the searchQuery.
     this.props.history.push(`/recipes?search=` + searchQuery);
 
-    const { paginatedRecipes, pageSize, totalCount } = this.getPagedData();
+    const url = `${process.env.REACT_APP_API_URL}/searchByIngredient`;
 
-    this.setState({
-      paginatedRecipes: paginatedRecipes,
-      pageSize,
-      totalCount,
-    });
+    fetch(url, {
+      method: "POST",
+      cache: "no-cache",
+      headers: {
+        "content-Type": "application/json",
+      },
+      body: JSON.stringify({ searchQuery: searchQuery }),
+    })
+      .then((response) => {
+        console.log(response.body);
+        return response.json();
+      })
+      .then((json) => console.log(json))
+      .catch((error) => console.log(error));
+
+    // const { paginatedRecipes, pageSize, totalCount } = this.getPagedData();
+
+    // this.setState({
+    //   paginatedRecipes: paginatedRecipes,
+    //   pageSize,
+    //   totalCount,
+    // });
   };
+
+  // async handleSearch2() {
+  //   let searchQuery = this.state.searchQuery;
+
+  //   this.props.history.push(`/recipes?search=` + searchQuery);
+
+  //   const url = `${process.env.REACT_APP_API_URL}/searchByIngredient`;
+
+  //   fetch(url, {
+  //     method: "POST",
+  //     cache: "no-cache",
+  //     header: {
+  //       content_type: "application/json",
+  //     },
+  //     body: JSON.stringify(this.state.searchQuery),
+  //   }).then((response) => {
+  //     console.log(response.json());
+  //     // return response.json();
+  //   });
+  // }
 
   getPagedData = () => {
     const {
@@ -167,6 +204,7 @@ class App extends Component {
                 value={this.state.searchQuery}
                 onChange={this.handleChange}
                 onSearch={this.handleSearch}
+                // onSearch={this.handleSearch2}
                 categories={categories}
                 paginatedRecipes={paginatedRecipes}
                 pageSize={pageSize}
@@ -190,6 +228,7 @@ class App extends Component {
                 value={this.state.searchQuery}
                 onChange={this.handleChange}
                 onSearch={this.handleSearch}
+                // onSearch={this.handleSearch2}
                 {...props}
               ></Home>
             )}

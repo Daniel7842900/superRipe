@@ -1,6 +1,6 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from dotenv import load_dotenv
 import os
 
@@ -12,8 +12,11 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:' + \
     os.getenv("DEV_DB_PASSWORD") + '@localhost/superRipe'
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:' + \
 #     os.getenv("DB_PASSWORD") + '@' + os.getenv("DB_END_POINT") + '/superripe'
+app.config['CORS_HEADERS'] = 'Content-Type'
 db = SQLAlchemy(app)
 CORS(app)
+# cors = CORS(app, resources={
+#             r"/api/searchByIngredient": {"origins": "http://localhost:port"}})
 
 
 class Recipes(db.Model):
@@ -78,3 +81,14 @@ def index():
     categories = [*map(categories_serializer, Categories.query.all())]
     payload = {'recipes': recipes, 'categories': categories}
     return jsonify(payload)
+
+
+@app.route('/api/searchByIngredient', methods=['POST'])
+@cross_origin()
+# @cross_origin(origin='localhost', headers=['Content-Type', 'Authorization'])
+def searchByIngredient():
+    if request.is_json:
+        print(request.data)
+    searchQuery = request.get_json()
+    print(searchQuery)
+    return jsonify(searchQuery)

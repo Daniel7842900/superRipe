@@ -1,6 +1,6 @@
 import Home from "./Home";
 import { shallow } from "enzyme";
-import { findByTestAtrr } from "../../../utils/findByTestAttr";
+import { findByTestAtrr } from "../../../utils/testUtil";
 
 const setUp = (props = {}) => {
   const component = shallow(<Home {...props} />);
@@ -13,8 +13,6 @@ describe("<Home />", () => {
     beforeEach(() => {
       const props = {
         value: "test value",
-        onChange: jest.fn(),
-        onSearch: jest.fn(),
       };
       wrapper = setUp(props);
     });
@@ -34,10 +32,10 @@ describe("<Home />", () => {
       expect(firstBanner.length).toBe(1);
     });
 
-    // it("should render searchBox component", () => {
-    //   const searchBox = findByTestAtrr(wrapper, "searchBoxComponent");
-    //   expect(searchBox.length).toBe(1);
-    // });
+    it("should render searchBox component", () => {
+      const searchBox = findByTestAtrr(wrapper, "searchBoxComponent");
+      expect(searchBox.length).toBe(1);
+    });
 
     it("should render how component", () => {
       const how = findByTestAtrr(wrapper, "howComponent");
@@ -68,17 +66,20 @@ describe("<Home />", () => {
       const footer = findByTestAtrr(wrapper, "footerComponent");
       expect(footer.length).toBe(1);
     });
+
+    it("should call onChange prop", () => {
+      const onChangeMockFn = jest.fn();
+      wrapper = shallow(<Home onChange={onChangeMockFn} />);
+      wrapper.find(`[data-test="searchBoxComponent"]`).simulate("change");
+      expect(onChangeMockFn).toHaveBeenCalled();
+    });
+
+    it("should call onSearch prop", () => {
+      const onSearchMockFn = jest.fn();
+      wrapper = shallow(<Home onSearch={onSearchMockFn} />);
+      // console.log(wrapper.debug());
+      wrapper.find(`[data-test="searchBoxComponent"]`).simulate("search");
+      expect(onSearchMockFn).toHaveBeenCalled();
+    });
   });
-
-  // describe("Have NO props", () => {
-  //   let wrapper;
-  //   beforeEach(() => {
-  //     wrapper = setUp();
-  //   });
-
-  //   it("should not render", () => {
-  //     const component = findByTestAtrr(wrapper, "homeComponent");
-  //     expect(component.length).toBe(0);
-  //   });
-  // });
 });
