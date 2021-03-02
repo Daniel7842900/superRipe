@@ -16,16 +16,17 @@ class App extends Component {
     paginatedRecipes: [],
   };
 
-  async componentDidMount() {
-    // const url = "/api/recipes";
-    const url = `${process.env.REACT_APP_API_URL}/recipes`;
-    // console.log(url);
-    const response = await fetch(url);
-    const data = await response.json();
-    // console.log(data["recipes"]);
-    const categories = [{ name: "All" }, ...data["categories"]];
-    this.setState({ recipes: data["recipes"], categories });
-  }
+  // async componentDidMount() {
+  //   // const url = "/api/recipes";
+  //   const url = `${process.env.REACT_APP_API_URL}/recipes`;
+  //   // console.log(url);
+  //   const response = await fetch(url);
+  //   const data = await response.json();
+  //   // console.log(data["recipes"]);
+  //   const categories = [{ name: "All" }, ...data["categories"]];
+  //   this.setState({ recipes: data["recipes"], categories });
+  //   // this.setState({ recipes: data["recipes"] });
+  // }
 
   /* Handling previous button function of pagination */
   handlePreviousPage = (page) => {
@@ -113,10 +114,22 @@ class App extends Component {
       body: JSON.stringify({ searchQuery: searchQuery }),
     })
       .then((response) => {
-        console.log(response.body);
+        // The response we get here is not JSON, but an object with a series of methods
+        // that can be used depending on what you want to do with the information.
+        // To convert the object returned into JSON, we use json().
         return response.json();
       })
-      .then((json) => console.log(json))
+      .then((json) => {
+        console.log(json);
+        const searchedRecipes = [];
+        for (let i = 0; i < json.length; i++) {
+          searchedRecipes.push(json[i]["recipe"]);
+        }
+
+        for (let j = 0; j < searchedRecipes.length; j++) {
+          console.log(searchedRecipes[j]);
+        }
+      })
       .catch((error) => console.log(error));
 
     // const { paginatedRecipes, pageSize, totalCount } = this.getPagedData();
@@ -127,26 +140,6 @@ class App extends Component {
     //   totalCount,
     // });
   };
-
-  // async handleSearch2() {
-  //   let searchQuery = this.state.searchQuery;
-
-  //   this.props.history.push(`/recipes?search=` + searchQuery);
-
-  //   const url = `${process.env.REACT_APP_API_URL}/searchByIngredient`;
-
-  //   fetch(url, {
-  //     method: "POST",
-  //     cache: "no-cache",
-  //     header: {
-  //       content_type: "application/json",
-  //     },
-  //     body: JSON.stringify(this.state.searchQuery),
-  //   }).then((response) => {
-  //     console.log(response.json());
-  //     // return response.json();
-  //   });
-  // }
 
   getPagedData = () => {
     const {
