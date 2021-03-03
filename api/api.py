@@ -24,16 +24,22 @@ CORS(app)
 
 
 def edamam_search(query):
-    APP_ID = os.getenv("APP_ID")
     APP_KEY = os.getenv("APP_KEY")
-    RECIPE_TIME_LIMIT = 10
+    MAX_RECIPE_TIME = 10
+    MAX_RECIPE_NUMBER = 10
 
-    curl = f"https://api.edamam.com/search?q={query}" \
-        f"&app_id={APP_ID}" f"&app_key={APP_KEY}" \
-        f"&time=1-{RECIPE_TIME_LIMIT}"
+    curl = f"https://api.spoonacular.com/recipes/complexSearch?" \
+        f"&includeIngredients={query}" \
+        f"&instructionsRequired=true" \
+        f"&maxReadyTime={MAX_RECIPE_TIME}" \
+        f"&number={MAX_RECIPE_NUMBER}" \
+        f"&apiKey={APP_KEY}"
 
+    # print(curl)
     response = requests.get(curl)
-    hits = response.json()['hits']
+    # print(response)
+    hits = response.json()
+    # print(hits)
 
     return hits
 

@@ -7,7 +7,7 @@ import "./RecipeCardContent.css";
 class RecipeCardContent extends Component {
   render() {
     const { paginatedRecipes } = this.props;
-    console.log(paginatedRecipes.length);
+    // console.log(paginatedRecipes);
     if (paginatedRecipes.length !== 0) {
       return (
         <Card.Body className="recipe-main-div">
@@ -15,30 +15,27 @@ class RecipeCardContent extends Component {
             return (
               <div>
                 <Card.Title id="recipe-name">
-                  <h4>{capitalizeFirstLetter(recipe.title)}</h4>
+                  {/* <h4>{capitalizeFirstLetter(recipe["label"])}</h4> */}
                 </Card.Title>
                 <Card.Text>
                   <div className="recipe-time-div">
                     <span>
-                      {/* {recipe.prep_time ? (
-                        <p id="prep-time">Prep time: {recipe.prep_time} mins</p>
-                      ) : (
-                        <p id="prep-time">Prep time: 0 mins</p>
-                      )} */}
-                      {/* {recipe.craft_time ? (
-                        <p id="craft-time">
-                          Craft time: {recipe.craft_time} mins
+                      {/* {recipe["totalTime"] ? (
+                        <p id="total-time">
+                          Total Time: {recipe["totalTime"]} mins
                         </p>
                       ) : (
-                        <p id="craft-time">Craft time: 0 mins</p>
+                        <p id="total-time">Total Time: 0 mins</p>
                       )} */}
                     </span>
                   </div>
                   <div className="recipe-ingredients-div">
                     <h4>Ingredients</h4>
                     <ul id="ingredients">
-                      {/* {recipe.ingredients.map((ingredient) => {
-                        return <li key={ingredient}>{ingredient}</li>;
+                      {/* {recipe["ingredients"].map((ingredient) => {
+                        return (
+                          <li key={ingredient["text"]}>{ingredient["text"]}</li>
+                        );
                       })} */}
                     </ul>
                   </div>

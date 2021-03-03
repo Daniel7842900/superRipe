@@ -100,7 +100,7 @@ class App extends Component {
         console.log(json);
         const searchedRecipes = [];
         for (let i = 0; i < json.length; i++) {
-          searchedRecipes.push(json[i]["recipe"]);
+          searchedRecipes.push(json["results"][i]);
         }
         this.setState({ recipes: searchedRecipes }, () => {
           const {
@@ -117,14 +117,6 @@ class App extends Component {
         });
       })
       .catch((error) => console.log(error));
-    // console.log("hello");
-    // const { paginatedRecipes, pageSize, totalCount } = this.getPagedData();
-
-    // this.setState({
-    //   paginatedRecipes: paginatedRecipes,
-    //   pageSize,
-    //   totalCount,
-    // });
   };
 
   getPagedData = () => {
