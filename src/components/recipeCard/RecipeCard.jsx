@@ -13,8 +13,6 @@ class RecipeCard extends Component {
       totalCount,
       paginatedRecipes,
       currentPage,
-      categories,
-      onCategorySelect,
       onPageChange,
       onPreviousPage,
       onNextPage,
@@ -25,12 +23,7 @@ class RecipeCard extends Component {
         <Row>
           <div className="recipe-div content-container">
             <Card className="recipe-display-div" text="dark">
-              <Card.Header className="recipe-cat">
-                <ListGroupCustom
-                  items={categories}
-                  onItemSelect={onCategorySelect}
-                ></ListGroupCustom>
-              </Card.Header>
+              <Card.Header className="recipe-cat"></Card.Header>
               <Route
                 render={(props) => (
                   <RecipeCardContent

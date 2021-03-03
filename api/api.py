@@ -30,7 +30,7 @@ def edamam_search(query):
 
     curl = f"https://api.edamam.com/search?q={query}" \
         f"&app_id={APP_ID}" f"&app_key={APP_KEY}" \
-        f"&time={RECIPE_TIME_LIMIT}"
+        f"&time=1-{RECIPE_TIME_LIMIT}"
 
     response = requests.get(curl)
     hits = response.json()['hits']
@@ -58,8 +58,10 @@ def index():
 @app.route('/api/searchByIngredient', methods=['POST'])
 @cross_origin()
 def searchByIngredient():
+    # When we get the data, we are getting bytes literal format.
+    # Thus, we have to change that to json format.
     search_data = request.get_json()
     search_query = search_data["searchQuery"]
     searched_recipes = edamam_search(search_query)
-    print(searched_recipes)
+    # print(searched_recipes)
     return jsonify(searched_recipes)

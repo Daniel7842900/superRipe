@@ -7,7 +7,7 @@ import "./RecipeCardContent.css";
 class RecipeCardContent extends Component {
   render() {
     const { paginatedRecipes } = this.props;
-
+    console.log(paginatedRecipes.length);
     if (paginatedRecipes.length !== 0) {
       return (
         <Card.Body className="recipe-main-div">
@@ -20,34 +20,34 @@ class RecipeCardContent extends Component {
                 <Card.Text>
                   <div className="recipe-time-div">
                     <span>
-                      {recipe.prep_time ? (
+                      {/* {recipe.prep_time ? (
                         <p id="prep-time">Prep time: {recipe.prep_time} mins</p>
                       ) : (
                         <p id="prep-time">Prep time: 0 mins</p>
-                      )}
-                      {recipe.craft_time ? (
+                      )} */}
+                      {/* {recipe.craft_time ? (
                         <p id="craft-time">
                           Craft time: {recipe.craft_time} mins
                         </p>
                       ) : (
                         <p id="craft-time">Craft time: 0 mins</p>
-                      )}
+                      )} */}
                     </span>
                   </div>
                   <div className="recipe-ingredients-div">
                     <h4>Ingredients</h4>
                     <ul id="ingredients">
-                      {recipe.ingredients.map((ingredient) => {
+                      {/* {recipe.ingredients.map((ingredient) => {
                         return <li key={ingredient}>{ingredient}</li>;
-                      })}
+                      })} */}
                     </ul>
                   </div>
                   <div className="recipe-directions-div">
                     <h4>Direction</h4>
                     <ol id="directions">
-                      {recipe.directions.map((direction) => {
+                      {/* {recipe.directions.map((direction) => {
                         return <li key={direction}>{direction}</li>;
-                      })}
+                      })} */}
                     </ol>
                   </div>
                 </Card.Text>

@@ -8,8 +8,6 @@ import { paginate } from "./utils/paginate";
 class App extends Component {
   state = {
     recipes: [],
-    categories: [],
-    selectedCategory: "",
     currentPage: 1,
     pageSize: 1,
     searchQuery: "",
@@ -68,27 +66,6 @@ class App extends Component {
     });
   };
 
-  handleCategorySelect = (category) => {
-    // On category change, we set that category as selectedCategory
-    // and then use that for parsing new paged data.
-    console.log(category);
-    this.setState(
-      {
-        selectedCategory: category,
-        currentPage: 1,
-      },
-      () => {
-        const { paginatedRecipes, pageSize, totalCount } = this.getPagedData();
-
-        this.setState({
-          paginatedRecipes: paginatedRecipes,
-          pageSize,
-          totalCount,
-        });
-      }
-    );
-  };
-
   handleChange = (e) => {
     // Capture and update searchQuery whenever user types something in the input field.
     this.setState({ searchQuery: e.target.value.toLowerCase() });
@@ -125,13 +102,22 @@ class App extends Component {
         for (let i = 0; i < json.length; i++) {
           searchedRecipes.push(json[i]["recipe"]);
         }
+        this.setState({ recipes: searchedRecipes }, () => {
+          const {
+            paginatedRecipes,
+            pageSize,
+            totalCount,
+          } = this.getPagedData();
 
-        for (let j = 0; j < searchedRecipes.length; j++) {
-          console.log(searchedRecipes[j]);
-        }
+          this.setState({
+            paginatedRecipes: paginatedRecipes,
+            pageSize,
+            totalCount,
+          });
+        });
       })
       .catch((error) => console.log(error));
-
+    // console.log("hello");
     // const { paginatedRecipes, pageSize, totalCount } = this.getPagedData();
 
     // this.setState({
@@ -142,49 +128,16 @@ class App extends Component {
   };
 
   getPagedData = () => {
-    const {
-      currentPage,
-      pageSize,
-      recipes: allRecipes,
-      selectedCategory,
-      searchQuery,
-    } = this.state;
-
-    const searched = [];
-
-    for (let i = 0; i < allRecipes.length; i++) {
-      let recipe = allRecipes[i];
-      for (let j = 0; j < recipe.ingredients.length; j++) {
-        if (recipe.ingredients[j].includes(searchQuery) === true) {
-          searched.push(recipe);
-        }
-      }
-    }
-
-    // filter method returns filtered recipes by categories.
-    // If selectedCategory is truthy, we return recipes that have same category id with selected category id.
-    // Otherwise, we simply return all recipes.
-    // selectedCategory.id is for "all" category. ("all" category doesn't have id)
-    const filtered =
-      selectedCategory && selectedCategory.id
-        ? searched.filter((r) => r.category_id === selectedCategory.id)
-        : searched;
+    const { currentPage, pageSize, recipes: allRecipes } = this.state;
 
     // paginate method returns items on current page.
-    const paginatedRecipes = paginate(filtered, currentPage, pageSize);
+    const paginatedRecipes = paginate(allRecipes, currentPage, pageSize);
 
-    return { paginatedRecipes, pageSize, totalCount: filtered.length };
+    return { paginatedRecipes, pageSize, totalCount: allRecipes.length };
   };
 
   render() {
-    const {
-      categories,
-      paginatedRecipes,
-      pageSize,
-      totalCount,
-      selectedCategory,
-      currentPage,
-    } = this.state;
+    const { paginatedRecipes, pageSize, totalCount, currentPage } = this.state;
 
     return (
       <React.Fragment>
@@ -197,17 +150,13 @@ class App extends Component {
                 value={this.state.searchQuery}
                 onChange={this.handleChange}
                 onSearch={this.handleSearch}
-                // onSearch={this.handleSearch2}
-                categories={categories}
                 paginatedRecipes={paginatedRecipes}
                 pageSize={pageSize}
                 currentPage={currentPage}
                 totalCount={totalCount}
-                selectedCategory={selectedCategory}
                 onPageChange={this.handlePageChange}
                 onPreviousPage={this.handlePreviousPage}
                 onNextPage={this.handleNextPage}
-                onCategorySelect={this.handleCategorySelect}
                 searchQuery={this.searchQuery}
                 {...props}
               ></Recipe>
@@ -221,7 +170,6 @@ class App extends Component {
                 value={this.state.searchQuery}
                 onChange={this.handleChange}
                 onSearch={this.handleSearch}
-                // onSearch={this.handleSearch2}
                 {...props}
               ></Home>
             )}

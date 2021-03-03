@@ -12,16 +12,13 @@ class Recipe extends Component {
       value,
       onChange,
       onSearch,
-      categories,
       paginatedRecipes,
       pageSize,
       currentPage,
       totalCount,
-      selectedCategory,
       onPageChange,
       onPreviousPage,
       onNextPage,
-      onCategorySelect,
     } = this.props;
 
     const first_banner = "/resources/mainbanner-1440p.jpg";
@@ -40,13 +37,10 @@ class Recipe extends Component {
           paginatedRecipes={paginatedRecipes}
           pageSize={pageSize}
           totalCount={totalCount}
-          categories={categories}
-          selectedCategory={selectedCategory}
           currentPage={currentPage}
           onPageChange={onPageChange}
           onPreviousPage={onPreviousPage}
           onNextPage={onNextPage}
-          onCategorySelect={onCategorySelect}
         ></RecipeCard>
         <Footer></Footer>
       </div>
