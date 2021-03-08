@@ -93,15 +93,13 @@ class App extends Component {
       .then((response) => {
         // The response we get here is not JSON, but an object with a series of methods
         // that can be used depending on what you want to do with the information.
-        // To convert the object returned into JSON, we use json().
+        // To convert the object returned into JSON, we use json() method.
         return response.json();
       })
       .then((json) => {
         console.log(json);
-        const searchedRecipes = [];
-        for (let i = 0; i < json.length; i++) {
-          searchedRecipes.push(json["results"][i]);
-        }
+        const searchedRecipes = [...json];
+
         this.setState({ recipes: searchedRecipes }, () => {
           const {
             paginatedRecipes,

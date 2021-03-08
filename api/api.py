@@ -1,5 +1,6 @@
 import os
 import requests
+import array as arr
 from dotenv import load_dotenv
 from flask_cors import CORS, cross_origin
 from flask import Flask, jsonify, request
@@ -23,17 +24,67 @@ CORS(app)
 #             r"/api/searchByIngredient": {"origins": "http://localhost:port"}})
 
 
-def edamam_search(query):
+def spoonacular_recipe_search(query):
     APP_KEY = os.getenv("APP_KEY")
     MAX_RECIPE_TIME = 10
     MAX_RECIPE_NUMBER = 10
 
     curl = f"https://api.spoonacular.com/recipes/complexSearch?" \
-        f"&includeIngredients={query}" \
+        f"includeIngredients={query}" \
+        f"&fillIngredients=true" \
         f"&instructionsRequired=true" \
         f"&maxReadyTime={MAX_RECIPE_TIME}" \
         f"&number={MAX_RECIPE_NUMBER}" \
         f"&apiKey={APP_KEY}"
+
+    # Making a get request.
+    response = requests.get(curl)
+
+    # json() returns a JSON object of the result
+    hits = response.json()
+
+    results = hits["results"]
+    # print(results)
+
+    recipe_ids = arr.array('i', [])
+
+    for recipe in results:
+        recipe_ids.append(recipe["id"])
+        ingredients = []
+        if(recipe["missedIngredients"]):
+            for ingredient in recipe["missedIngredients"]:
+                ingredients.append(ingredient["original"])
+            del recipe["missedIngredients"]
+        if(recipe["usedIngredients"]):
+            for ingredient in recipe["usedIngredients"]:
+                ingredients.append(ingredient["original"])
+            del recipe["usedIngredients"]
+        recipe["ingredients"] = ingredients
+
+    for i in range(len(recipe_ids)):
+        # print(recipe_id)
+        recipe_id = recipe_ids[i]
+        steps = get_spoonacular_recipe_instructions(recipe_id)[0]["steps"]
+        for step in steps:
+            if(step["ingredients"]):
+                del step["ingredients"]
+            if(step["equipment"]):
+                del step["equipment"]
+        # print(steps)
+        results[i]["steps"] = steps
+        # print(results[i]["steps"])
+
+    # print(recipe_ids)
+    print(results[0])
+
+    return hits
+
+
+def get_spoonacular_recipe_instructions(recipe_id):
+    APP_KEY = os.getenv("APP_KEY")
+
+    curl = f"https://api.spoonacular.com/recipes/{recipe_id}/analyzedInstructions?" \
+        f"apiKey={APP_KEY}"
 
     # print(curl)
     response = requests.get(curl)
@@ -43,15 +94,14 @@ def edamam_search(query):
 
     return hits
 
+
 # This route is needed for the default EB health check
-
-
-@app.route('/')
+@ app.route('/')
 def home():
     return "ok"
 
 
-@app.route('/api/recipes', methods=['GET'])
+@ app.route('/api/recipes', methods=['GET'])
 def index():
     # recipes = [*map(recipes_serializer, Recipes.query.all())]
     # categories = [*map(categories_serializer, Categories.query.all())]
@@ -61,13 +111,18 @@ def index():
     return jsonify(payload)
 
 
-@app.route('/api/searchByIngredient', methods=['POST'])
-@cross_origin()
+@ app.route('/api/searchByIngredient', methods=['POST'])
+@ cross_origin()
 def searchByIngredient():
     # When we get the data, we are getting bytes literal format.
     # Thus, we have to change that to json format.
     search_data = request.get_json()
     search_query = search_data["searchQuery"]
-    searched_recipes = edamam_search(search_query)
+
+    searched_recipes_json = spoonacular_recipe_search(search_query)
+    # print(searched_recipes_json)
+    # searched_recipes = json.loads(json.loads(get_info()))
+    # searched_recipes = searched_recipes_json["results"]
     # print(searched_recipes)
-    return jsonify(searched_recipes)
+    # print(searched_recipes)
+    return jsonify(searched_recipes_json)
