@@ -1,5 +1,6 @@
 import os
 import requests
+import json
 import array as arr
 from dotenv import load_dotenv
 from flask_cors import CORS, cross_origin
@@ -44,8 +45,6 @@ def spoonacular_recipe_search(query):
     hits = response.json()
 
     results = hits["results"]
-    # print(results)
-
     recipe_ids = arr.array('i', [])
 
     for recipe in results:
@@ -62,7 +61,6 @@ def spoonacular_recipe_search(query):
         recipe["ingredients"] = ingredients
 
     for i in range(len(recipe_ids)):
-        # print(recipe_id)
         recipe_id = recipe_ids[i]
         steps = get_spoonacular_recipe_instructions(recipe_id)[0]["steps"]
         for step in steps:
@@ -70,14 +68,9 @@ def spoonacular_recipe_search(query):
                 del step["ingredients"]
             if(step["equipment"]):
                 del step["equipment"]
-        # print(steps)
         results[i]["steps"] = steps
-        # print(results[i]["steps"])
 
-    # print(recipe_ids)
-    print(results[0])
-
-    return hits
+    return results
 
 
 def get_spoonacular_recipe_instructions(recipe_id):
@@ -86,11 +79,8 @@ def get_spoonacular_recipe_instructions(recipe_id):
     curl = f"https://api.spoonacular.com/recipes/{recipe_id}/analyzedInstructions?" \
         f"apiKey={APP_KEY}"
 
-    # print(curl)
     response = requests.get(curl)
-    # print(response)
     hits = response.json()
-    # print(hits)
 
     return hits
 

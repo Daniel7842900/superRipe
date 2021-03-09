@@ -15,8 +15,9 @@ class RecipeCardContent extends Component {
             return (
               <div>
                 <Card.Title id="recipe-name">
-                  {/* <h4>{capitalizeFirstLetter(recipe["label"])}</h4> */}
+                  <h4>{capitalizeFirstLetter(recipe["title"])}</h4>
                 </Card.Title>
+                <Card.Img src={recipe["image"]} />
                 <Card.Text>
                   <div className="recipe-time-div">
                     <span>
@@ -32,19 +33,17 @@ class RecipeCardContent extends Component {
                   <div className="recipe-ingredients-div">
                     <h4>Ingredients</h4>
                     <ul id="ingredients">
-                      {/* {recipe["ingredients"].map((ingredient) => {
-                        return (
-                          <li key={ingredient["text"]}>{ingredient["text"]}</li>
-                        );
-                      })} */}
+                      {recipe["ingredients"].map((ingredient) => {
+                        return <li key={ingredient["text"]}>{ingredient}</li>;
+                      })}
                     </ul>
                   </div>
                   <div className="recipe-directions-div">
                     <h4>Direction</h4>
                     <ol id="directions">
-                      {/* {recipe.directions.map((direction) => {
-                        return <li key={direction}>{direction}</li>;
-                      })} */}
+                      {recipe["steps"].map((step) => {
+                        return <li key={step["number"]}>{step["step"]}</li>;
+                      })}
                     </ol>
                   </div>
                 </Card.Text>
