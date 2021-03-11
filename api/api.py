@@ -12,20 +12,14 @@ load_dotenv()
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
-
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:' + \
-#     os.getenv("DEV_DB_PASSWORD") + '@localhost/superRipe'
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:' + \
-#     os.getenv("DB_PASSWORD") + '@' + os.getenv("DB_END_POINT") + '/superripe'
 # app.config['CORS_HEADERS'] = 'Content-Type'
-# db = SQLAlchemy(app)
 CORS(app)
-# cors = CORS(app, resources={
-#             r"/api/searchByIngredient": {"origins": "http://localhost:port"}})
 
 
 def spoonacular_recipe_search(query):
+    """
+    API call to spoonacular API when route /api/searchByIngredient is hit.
+    """
     APP_KEY = os.getenv("APP_KEY")
     MAX_RECIPE_TIME = 10
     MAX_RECIPE_NUMBER = 10
@@ -44,11 +38,15 @@ def spoonacular_recipe_search(query):
     # json() returns a JSON object of the result
     hits = response.json()
 
+    # results is a list of objects
     results = hits["results"]
     recipe_ids = arr.array('i', [])
 
+    # Add recipe ids into recipe_ids array for the future use.
+    # Grab ingredient info from each recipe and reform.
     for recipe in results:
         recipe_ids.append(recipe["id"])
+
         ingredients = []
         if(recipe["missedIngredients"]):
             for ingredient in recipe["missedIngredients"]:
@@ -60,24 +58,35 @@ def spoonacular_recipe_search(query):
             del recipe["usedIngredients"]
         recipe["ingredients"] = ingredients
 
+    # Get specific information of each recipe
     for i in range(len(recipe_ids)):
         recipe_id = recipe_ids[i]
-        steps = get_spoonacular_recipe_instructions(recipe_id)[0]["steps"]
+        recipe_information = get_spoonacular_recipe_information(recipe_id)
+        if(recipe_information["analyzedInstructions"]):
+            steps = recipe_information["analyzedInstructions"][0]["steps"]
+        else:
+            steps = []
+        total_time = recipe_information["readyInMinutes"]
         for step in steps:
             if(step["ingredients"]):
                 del step["ingredients"]
             if(step["equipment"]):
                 del step["equipment"]
         results[i]["steps"] = steps
+        results[i]["totalTime"] = total_time
 
     return results
 
 
-def get_spoonacular_recipe_instructions(recipe_id):
+def get_spoonacular_recipe_information(recipe_id):
+    """
+    API call to spoonacular api when we need information of a specific recipe.
+    """
     APP_KEY = os.getenv("APP_KEY")
 
-    curl = f"https://api.spoonacular.com/recipes/{recipe_id}/analyzedInstructions?" \
-        f"apiKey={APP_KEY}"
+    curl = f"https://api.spoonacular.com/recipes/{recipe_id}/information?" \
+        f"apiKey={APP_KEY}" \
+        f"&includeNutrition=false"
 
     response = requests.get(curl)
     hits = response.json()
@@ -88,31 +97,42 @@ def get_spoonacular_recipe_instructions(recipe_id):
 # This route is needed for the default EB health check
 @ app.route('/')
 def home():
+    """home endpoint.
+    ---
+    get:
+      description: Exists for EB health check
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          content:
+            application/json:
+              schema: PetSchema
+    """
     return "ok"
-
-
-@ app.route('/api/recipes', methods=['GET'])
-def index():
-    # recipes = [*map(recipes_serializer, Recipes.query.all())]
-    # categories = [*map(categories_serializer, Categories.query.all())]
-    # recipes = edamam_search()
-    # payload = {'recipes': recipes, 'categories': categories}
-    payload = 1
-    return jsonify(payload)
 
 
 @ app.route('/api/searchByIngredient', methods=['POST'])
 @ cross_origin()
 def searchByIngredient():
+    """Recipe search by an ingredient endpoint.
+    ---
+    post:
+      description: get a search query from post request and give the recipe info back to front-end.
+      responses:
+        200:
+          content:
+            application/json:
+    """
+
     # When we get the data, we are getting bytes literal format.
     # Thus, we have to change that to json format.
     search_data = request.get_json()
+
+    # Get search query from search_data json object.
     search_query = search_data["searchQuery"]
 
-    searched_recipes_json = spoonacular_recipe_search(search_query)
-    # print(searched_recipes_json)
-    # searched_recipes = json.loads(json.loads(get_info()))
-    # searched_recipes = searched_recipes_json["results"]
-    # print(searched_recipes)
-    # print(searched_recipes)
-    return jsonify(searched_recipes_json)
+    searched_recipes_list = spoonacular_recipe_search(search_query)
+
+    # jsonify turns the JSON output into a flask.Response() object with application/json type.
+    return jsonify(searched_recipes_list)
