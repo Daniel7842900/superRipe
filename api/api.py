@@ -1,4 +1,5 @@
 import os
+import time
 import requests
 import json
 import array as arr
@@ -10,16 +11,15 @@ from sqlalchemy import func
 
 load_dotenv()
 
-app = Flask(__name__)
-app.config["DEBUG"] = True
-# app.config['CORS_HEADERS'] = 'Content-Type'
-CORS(app)
+application = Flask(__name__)
+CORS(application)
 
 
 def spoonacular_recipe_search(query):
     """
     API call to spoonacular API when route /api/searchByIngredient is hit.
     """
+    start = time.time()
     APP_KEY = os.getenv("APP_KEY")
     MAX_RECIPE_TIME = 10
     MAX_RECIPE_NUMBER = 10
@@ -75,6 +75,9 @@ def spoonacular_recipe_search(query):
         results[i]["steps"] = steps
         results[i]["totalTime"] = total_time
 
+    end = time.time()
+    print(f"The total time taken for getting every recipe is: {end-start}")
+
     return results
 
 
@@ -82,6 +85,7 @@ def get_spoonacular_recipe_information(recipe_id):
     """
     API call to spoonacular api when we need information of a specific recipe.
     """
+    start = time.time()
     APP_KEY = os.getenv("APP_KEY")
 
     curl = f"https://api.spoonacular.com/recipes/{recipe_id}/information?" \
@@ -91,11 +95,15 @@ def get_spoonacular_recipe_information(recipe_id):
     response = requests.get(curl)
     hits = response.json()
 
+    end = time.time()
+    print(
+        f"The total time taken for getting this specific recipe is: {end-start}")
+
     return hits
 
 
 # This route is needed for the default EB health check
-@ app.route('/')
+@ application.route('/')
 def home():
     """home endpoint.
     ---
@@ -112,7 +120,12 @@ def home():
     return "ok"
 
 
-@ app.route('/api/searchByIngredient', methods=['POST'])
+@application.route('/api/test')
+def test():
+    return "this is test route"
+
+
+@ application.route('/api/searchByIngredient', methods=['POST'])
 @ cross_origin()
 def searchByIngredient():
     """Recipe search by an ingredient endpoint.
@@ -136,3 +149,7 @@ def searchByIngredient():
 
     # jsonify turns the JSON output into a flask.Response() object with application/json type.
     return jsonify(searched_recipes_list)
+
+
+if __name__ == '__main__':
+    application.run(port=8080)

@@ -16,6 +16,7 @@ class RecipeCard extends Component {
       onPageChange,
       onPreviousPage,
       onNextPage,
+      loading,
     } = this.props;
 
     return (
@@ -23,11 +24,11 @@ class RecipeCard extends Component {
         <Row>
           <div className="recipe-div content-container">
             <Card className="recipe-display-div" text="dark">
-              <Card.Header className="recipe-cat"></Card.Header>
               <Route
                 render={(props) => (
                   <RecipeCardContent
                     paginatedRecipes={paginatedRecipes}
+                    loading={loading}
                     {...props}
                   ></RecipeCardContent>
                 )}

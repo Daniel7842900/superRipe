@@ -12,7 +12,6 @@ class Paginate extends Component {
       onPreviousPage,
       onNextPage,
     } = this.props;
-    console.log("paginate rendering...");
 
     // Total page counts. We are displaying 1 item each page.
     // itemsCount would be number of items depending on categories.

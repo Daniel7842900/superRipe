@@ -32,8 +32,8 @@
 /* Extra small devices (phones) */
 @media only screen and (max-width: 446px) {
   .how-top-div h1 {
-    font-size: 3rem;
-    padding: 0.5rem 0 0 0;
+    font-size: 2.75rem;
+    padding: 3.5rem 0 0 0;
   }
 }
 

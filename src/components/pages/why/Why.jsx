@@ -25,9 +25,7 @@ class Why extends Component {
             <br />
             <p>
               Look up recipes to use up older fruits or ways to make health
-              products out of them. Search through tips on how to reduce your
-              footprint, keep those veggies lasting longer, and buy just enough
-              for your family - so nothing gets thrown out.
+              products out of them. - so nothing gets thrown out.
             </p>
             <br />
             <p>

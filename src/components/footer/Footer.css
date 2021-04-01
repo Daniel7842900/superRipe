@@ -21,6 +21,18 @@ footer {
   text-decoration: none;
 }
 
+/* Extra small devices (phones) */
+@media only screen and (max-width: 446px) {
+  .contact-us-div {
+    font-size: 1.75em;
+    text-align: center;
+  }
+
+  .contact-us-div p {
+    padding: 0.75rem 0;
+  }
+}
+
 /* Medium devices (landscape tablets) */
 @media only screen and (min-width: 768px) {
   .contact-us-div {

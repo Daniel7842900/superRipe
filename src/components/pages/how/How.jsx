@@ -21,12 +21,6 @@ class How extends Component {
               search. We provide hundreds of recipes, tips, and ideas for using
               up this food instead of throwing it in the bin.
             </p>
-            <br />
-            <p>
-              Unlike other websites, we give you everything - from food recipes,
-              to health product recipes, to tips and facts. Feel free to filter
-              your search results to see only what you want to see.
-            </p>
           </div>
         </div>
       </div>

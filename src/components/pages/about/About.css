@@ -35,6 +35,14 @@
   font-family: "Yusei Magic", sans-serif;
 }
 
+/* Extra small devices (phones) */
+@media only screen and (max-width: 446px) {
+  .about-top-div h1 {
+    font-size: 3rem;
+    padding: 4rem 0 0 0;
+  }
+}
+
 /* Small devices (portrait tablets and large phones) */
 @media only screen and (min-width: 600px) {
   .about-top-div h1 {

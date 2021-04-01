@@ -12,6 +12,7 @@ class App extends Component {
     pageSize: 1,
     searchQuery: "",
     paginatedRecipes: [],
+    loading: true,
   };
 
   // async componentDidMount() {
@@ -80,7 +81,11 @@ class App extends Component {
     // Redirect users to the given url that contains the searchQuery.
     this.props.history.push(`/recipes?search=` + searchQuery);
 
-    const url = `${process.env.REACT_APP_API_URL}/searchByIngredient`;
+    // The response we get here is not JSON, but an object with a series of methods
+    // that can be used depending on what you want to do with the information.
+    // To convert the object returned into JSON, we use json() method.
+    // const url = `${process.env.REACT_APP_API_PROD_URL}/searchByIngredient`;
+    const url = `${process.env.REACT_APP_API_DEV_URL}/searchByIngredient`;
 
     fetch(url, {
       method: "POST",
@@ -91,9 +96,7 @@ class App extends Component {
       body: JSON.stringify({ searchQuery: searchQuery }),
     })
       .then((response) => {
-        // The response we get here is not JSON, but an object with a series of methods
-        // that can be used depending on what you want to do with the information.
-        // To convert the object returned into JSON, we use json() method.
+        console.log("is it getting response?");
         return response.json();
       })
       .then((json) => {
@@ -111,10 +114,12 @@ class App extends Component {
             paginatedRecipes: paginatedRecipes,
             pageSize,
             totalCount,
+            // loading: false,
           });
         });
       })
       .catch((error) => console.log(error));
+    console.log("test");
   };
 
   getPagedData = () => {
@@ -148,6 +153,7 @@ class App extends Component {
                 onPreviousPage={this.handlePreviousPage}
                 onNextPage={this.handleNextPage}
                 searchQuery={this.searchQuery}
+                loading={this.state.loading}
                 {...props}
               ></Recipe>
             )}

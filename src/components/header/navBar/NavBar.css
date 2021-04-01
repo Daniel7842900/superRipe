@@ -6,6 +6,10 @@
   width: 100%;
 }
 
+.test {
+  font-size: 4rem;
+}
+
 .navbar-brand span {
   padding-left: 0.1em;
   padding-right: 0.1em;

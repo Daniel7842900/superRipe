@@ -19,6 +19,7 @@ class Recipe extends Component {
       onPageChange,
       onPreviousPage,
       onNextPage,
+      loading,
     } = this.props;
 
     const first_banner = "/resources/mainbanner-1440p.jpg";
@@ -41,6 +42,7 @@ class Recipe extends Component {
           onPageChange={onPageChange}
           onPreviousPage={onPreviousPage}
           onNextPage={onNextPage}
+          loading={loading}
         ></RecipeCard>
         <Footer></Footer>
       </div>
